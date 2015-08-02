@@ -71,23 +71,21 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 @property (strong, nonatomic) NSArray *availableCategories;
 
 //tableView
-@property (strong, nonatomic) NSMutableArray *itemsArray;
+@property (strong, nonatomic) NSMutableArray      *itemsArray;
 @property (strong, nonatomic) UIAlertController   *alertController;
-@property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) UIActionSheet       *actionSheet;
 //@property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) ASImagePickerVC *imagePicker;
+@property (strong, nonatomic) ASImagePickerVC     *imagePicker;
 
-@property (strong, nonatomic) NSIndexPath *choosenCellPath;
+@property (strong, nonatomic) NSIndexPath         *choosenCellPath;
 
-@property (strong, nonatomic) UITextField *activeField;
+@property (strong, nonatomic) UITextField         *activeField;
 
 //arrays for vary locations and places.
 //@property (strong, nonatomic) NSArray *locationsArray;
 //@property (strong, nonatomic) NSArray *placesArray;
 
-@property (strong, nonatomic) UITextField *nameField;
-
-@property (strong, nonatomic) NSMutableIndexSet *indexSetFroButton;
+@property (strong, nonatomic) UITextField       *nameField;
 
 @end
 
@@ -173,8 +171,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     //[self animateTextField:textField up:NO];
     [self animateTableViewPositionForItem:textField up:NO];
-
-    if ( [textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
+    
+    if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
         ((ActionSheetDatePicker*)textField.inputView).target = nil;
     
     [textField endEditing:YES];
@@ -186,21 +184,29 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     
     if (indexPath) {
-
+        
         self.choosenCellPath = indexPath;
-
+        
         if (indexPath.row == 2) {
+            
             self.card.name = textField.text;
+            
+//            ASTextFieldCell *currentChosenCell = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+//            currentChosenCell.tempField = textField.text;
+//            
+//            [self.itemsArray replaceObjectAtIndex:self.choosenCellPath.row withObject:currentChosenCell];
+            
             //[textField resignFirstResponder];
             //self.nameField = textField;
         }
-          }
+    }
 }
 
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     if ([textField.placeholder isEqualToString:@"Exp.date"]) {
+        
         [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
         return YES;
     }
@@ -356,8 +362,15 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             
             if (secondCell.textField.text.length == 0) {
                 
-                [self.itemsArray removeObjectAtIndex:indexPathOfNextPlaceCell.row];
-                [self.itemsArray removeObjectAtIndex:indexPathOfNextLocationCell.row];
+//                [self.itemsArray removeObjectAtIndex:indexPathOfNextPlaceCell.row];
+//                [self.itemsArray removeObjectAtIndex:indexPathOfNextLocationCell.row];
+                
+                NSMutableIndexSet *mutableIndexSet = [[NSMutableIndexSet alloc] init];
+                [mutableIndexSet addIndex:indexPathOfNextPlaceCell.row];
+                [mutableIndexSet addIndex:indexPathOfNextLocationCell.row];
+                
+                [self.itemsArray removeObjectsAtIndexes:mutableIndexSet];
+                
                 [self.tableView reloadData];
             }
             
@@ -369,8 +382,14 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
                 if (secondCell.textField.text.length > 0 && indexPathOfNextLocationCell.row < [self.itemsArray count] - 3) {
                     //delete rows
                     
-                    [self.itemsArray removeObjectAtIndex:indexPathForCurrentCell.row];
-                    [self.itemsArray removeObjectAtIndex:indexPathOfNextPlaceCell.row];
+                    //[self.itemsArray removeObjectAtIndex:indexPathForCurrentCell.row];
+                    //[self.itemsArray removeObjectAtIndex:indexPathOfNextPlaceCell.row];
+                    NSMutableIndexSet *mutableIndexSet = [[NSMutableIndexSet alloc] init];
+                    [mutableIndexSet addIndex:indexPathForCurrentCell.row];
+                    [mutableIndexSet addIndex:indexPathOfNextPlaceCell.row];
+                    
+                    [self.itemsArray removeObjectsAtIndexes:mutableIndexSet];
+                    
                     [self.tableView reloadData];
                 }
             }
@@ -390,9 +409,9 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     [ActionSheetStringPicker
      showPickerWithTitle:@"Select a Category"
-     rows:self.availableCategories
-     initialSelection:0
-     doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                    rows:self.availableCategories
+        initialSelection:0
+               doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
          
          NSLog(@"Picker: %@", picker);
          NSLog(@"Selected Index: %ld", (long)selectedIndex);
@@ -408,11 +427,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
          self.card.category_id = chosenCategory.iD;
          
          ASTextFieldCell *currentChosenCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
-         
-         ASTextFieldCell *currentChosenCell2 = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+ 
          currentChosenCell.textField.text = [NSString stringWithFormat:@"%@",selectedValue];
-         currentChosenCell2.textField.text = [NSString stringWithFormat:@"%@",selectedValue];
 
+        [self.itemsArray replaceObjectAtIndex:self.choosenCellPath.row withObject:currentChosenCell];
+                   
          [self animateTableViewPositionForItem:currentChosenCell up:NO];
      }
      
@@ -498,13 +517,12 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     self.card.expDate = [dateFormatter stringFromDate:self.selectedDate];
     
-    NSLog(@"choosenCellPath %@", self.choosenCellPath);
-    
     ASTextFieldCell *currentChosenCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
-    ASTextFieldCell *currentChosenCell2 = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
     
     currentChosenCell.textField.text = [dateFormatter stringFromDate:self.selectedDate];
-    currentChosenCell2.textField.text = [dateFormatter stringFromDate:self.selectedDate];
+    
+    [self.itemsArray replaceObjectAtIndex:self.choosenCellPath.row withObject:currentChosenCell];
+    
 
     //change content offset for textField when edit is end.
     //[self animateTextField:textField up:NO];
@@ -533,7 +551,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"items array count = %ld",[self.itemsArray count]);
+
     return [self.itemsArray count];
 }
 
@@ -599,8 +617,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         [((ASTextFieldCell*)cell).textField addTarget:self action:@selector(checkButtonTapped:)  forControlEvents:UIControlEventTouchUpInside];//UIControlEventEditingDidBegin
         
         ASTextFieldCell *textFieldCell = [self.itemsArray objectAtIndex:indexPath.row];
-        
-        if (textFieldCell.textField.text.length == 0) {
+        NSLog(@"=====================================");
+        NSLog(@"textfieldCell text = %@",textFieldCell.textField.text);
+        NSLog(@"=====================================");
+
+        if (textFieldCell.tempField.length == 0) {
             
             NSString *placeholderText = nil;
 
@@ -620,7 +641,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         }else{
             
-            ((ASTextFieldCell*)cell).textField.text = textFieldCell.textField.text;
+            ((ASTextFieldCell*)cell).textField.text = textFieldCell.tempField;
         }
         
     }
@@ -1057,10 +1078,13 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         NSLog(@"GooglePlacesObject = %@", placesObj);
         
         locationCell.textField.text = placesObj.name;
+        locationCell.tempField = placesObj.name;
+        
         self.place.name = placesObj.name;
         self.place.placeID = placesObj.placeId;
         NSLog(@"GOOGLE PLACES id: %@", placesObj.placeId);
         NSLog(@"google places name = %@", placesObj.name);
+        
         
     }else if ([segue.identifier isEqualToString:@"unwindFromMapSelectLocation"]) {
     
@@ -1072,6 +1096,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         if (locationCardAdress && ![locationCardAdress isEqualToString:@"Undefined place"]) {
             locationCell.textField.text = locationCardAdress;
+            locationCell.tempField = locationCardAdress;
+            
             self.location.locationTitle = locationCardAdress;
         }else{
             locationCell.textField.text = @""; //define constant with empty string
@@ -1082,6 +1108,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     self.location.latitude = mapVC.latitude;
     
     self.choosenCellPath = mapVC.indexPath;
+        
+    [self.itemsArray replaceObjectAtIndex:self.choosenCellPath.row withObject:locationCell];
     
     //functional for "Add new fields (Add Place, Location) if field location is chose"
     [self addNewFieldsForLocationAndPlaceIfNeeded];
@@ -1119,6 +1147,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //self.itemsArray = [@[@1,@2,@3,@4,@5,@6,@7]mutableCopy];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
 }
 
 
@@ -1160,9 +1189,12 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         ASTextFieldCell *locationCell = [[ASTextFieldCell alloc]init];
         ASTextFieldCell *placeCell = [[ASTextFieldCell alloc]init];
         
-        [self.itemsArray addObject:locationCell];
-        [self.itemsArray addObject:placeCell];
+//        [self.itemsArray addObject:locationCell];
+//        [self.itemsArray addObject:placeCell];
         
+        [self.itemsArray insertObject:locationCell atIndex:[self.itemsArray count]-2];
+        [self.itemsArray insertObject:placeCell atIndex:[self.itemsArray count]-2];
+
        // NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.itemsArray count]- 4  inSection:0];
         
 //        ASTextFieldCell *cellWithCategoryTitle = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
@@ -1254,13 +1286,16 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 - (void)checkAndSetIfCardHaveDefaultCategory {
     
     if (self.categoryForNewCard) {
+        
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.itemsArray count]-2 inSection:0];
-       
-//        ASTextFieldCell *selectionCategoryField = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-//        selectionCategoryField.textField.text = self.categoryForNewCard.name;
+        
+        //        ASTextFieldCell *selectionCategoryField = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        //        selectionCategoryField.textField.text = self.categoryForNewCard.name;
         
         ASTextFieldCell *selectionCategoryField = [self.itemsArray objectAtIndex:indexPath.row];
-        selectionCategoryField.textField.text = self.categoryForNewCard.name;
+        
+        selectionCategoryField.tempField = self.categoryForNewCard.name;
+        
     }
 }
 
@@ -1427,18 +1462,5 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 //    [self.nameField resignFirstResponder];
 }
 
-
-#pragma mark - ASCardImageCellDelegate
-
-- (void)setImageForCell:(ASCardImageCell*)cell {
-    
-//    NSIndexPath *path = [self.tableView indexPathForCell:cell];
-//    if(cell.imgButton){
-//        [self.indexSetFroButton addIndex:path.row];
-//    }else{
-//        [self.indexSetFroButton removeIndex:path.row];
-//    }
-    NSLog(@"ASCardImageCellDelegate");
-}
 
 @end

@@ -7,13 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ASCardImageCell;
-
-@protocol ASCardImageCellDelegate <NSObject>
-
-- (void)setImageForCell:(ASCardImageCell*)cell;
-
-@end
 
 @interface ASCardImageCell : UITableViewCell
 
