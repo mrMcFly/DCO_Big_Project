@@ -159,6 +159,94 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 #pragma mark - UITextFieldDelegate
 
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
+        
+        // [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
+        return YES;
+    }
+    return  YES;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    //[self animateTextField:textField up:YES];
+    //[self animateTableViewPositionForItem:textField up:YES];
+    
+    //set active field for keyboard handler methods (notifications)
+    self.activeField = textField;
+    
+    if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
+        ((ActionSheetDatePicker*)textField.inputView).target = textField;
+    
+    if ([textField.placeholder isEqualToString:@"Card Name"])  {
+        
+        self.nameField = textField;
+        
+        //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+        //                                       initWithTarget:self
+        //                                       action:@selector(dismissKeyboardTable)];
+        //
+        //        [self.nameField addGestureRecognizer:tap];
+        
+    } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
+        
+        [textField endEditing:YES];
+        [textField resignFirstResponder];
+        [self dismissKeyboardTable];
+        
+        [self selectADate];
+        
+        //        CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+        //        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        //        self.choosenCellPath = indexPath;
+        //
+        //        self.datePicker = [[UIDatePicker alloc]init];
+        //        self.datePicker.datePickerMode = UIDatePickerModeDate;
+        //        [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+        //        [textField setInputView:self.datePicker];
+        
+    }else if ([textField.placeholder isEqualToString:@"Location"]) {
+        
+        [textField endEditing:YES];
+        [textField resignFirstResponder];
+        [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
+        
+    }else if ([textField.placeholder isEqualToString:@"Category"]) {
+        [textField endEditing:YES];
+        
+        //[self animateTableViewPositionForItem:textField up:YES];
+        
+        [textField resignFirstResponder];
+        [self selectCategory];
+        
+    }else if ([textField.placeholder isEqualToString:@"Add place"]) {
+        
+        [textField endEditing:YES];
+        
+        //[textField resignFirstResponder];
+        //NSLog(@"Add place");
+        
+        ASShowAllNearestPlacesVC *placesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ASShowAllNearestPlacesVC"];
+        
+        placesVC.longitude = self.location.longitude;
+        placesVC.latitude = self.location.latitude;
+        
+        
+        [self presentViewController:placesVC animated:YES completion:^{
+            // NSLog(@"Completion");
+        }];
+        
+    }else {
+        
+        NSLog(@"default");
+    }
+}
+
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     //[self animateTextField:textField up:NO];
@@ -191,25 +279,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 }
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
-        // [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
-        return YES;
-    }
-    return  YES;
-}
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     BOOL shouldReplace = true;
@@ -218,79 +287,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-     //[self animateTextField:textField up:YES];
-    //[self animateTableViewPositionForItem:textField up:YES];
+    [textField resignFirstResponder];
     
-    //set active field for keyboard handler methods (notifications)
-    self.activeField = textField;
-    
-    if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
-        ((ActionSheetDatePicker*)textField.inputView).target = textField;
-    
-    if ([textField.placeholder isEqualToString:@"Card Name"])  {
-        
-        self.nameField = textField;
-        
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-//                                       initWithTarget:self
-//                                       action:@selector(dismissKeyboardTable)];
-//        
-//        [self.nameField addGestureRecognizer:tap];
-        
-    } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
-        [textField endEditing:YES];
-        [textField resignFirstResponder];
-        [self dismissKeyboardTable];
-
-        [self selectADate];
-        
-//        CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
-//        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-//        self.choosenCellPath = indexPath;
-//        
-//        self.datePicker = [[UIDatePicker alloc]init];
-//        self.datePicker.datePickerMode = UIDatePickerModeDate;
-//        [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
-//        [textField setInputView:self.datePicker];
-        
-    }else if ([textField.placeholder isEqualToString:@"Location"]) {
-        
-        [textField endEditing:YES];
-        [textField resignFirstResponder];
-        [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
-        
-    }else if ([textField.placeholder isEqualToString:@"Category"]) {
-        [textField endEditing:YES];
-        
-        //[self animateTableViewPositionForItem:textField up:YES];
-
-        [textField resignFirstResponder];
-        [self selectCategory];
-        
-    }else if ([textField.placeholder isEqualToString:@"Add place"]) {
-     
-        [textField endEditing:YES];
-
-        //[textField resignFirstResponder];
-        //NSLog(@"Add place");
-        
-        ASShowAllNearestPlacesVC *placesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ASShowAllNearestPlacesVC"];
-
-        placesVC.longitude = self.location.longitude;
-        placesVC.latitude = self.location.latitude;
-        
-        
-        [self presentViewController:placesVC animated:YES completion:^{
-            // NSLog(@"Completion");
-        }];
-
-    }else {
-        
-        NSLog(@"default");
-    }
+    return YES;
 }
 
 
@@ -446,33 +447,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //[self animateTableViewPositionForItem:currentChosenCell up:YES];
 
 }
-
-- (void)selectADateForField:(UITextField*)textField {
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
-    
-    int yearsToAdd = 5;
-    NSDate *maxDate = [minDate dateByAddingTimeInterval:60 * 60 * 24 * 365 * yearsToAdd];
-    
-    self.actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Expiraton date"
-                                                           datePickerMode:UIDatePickerModeDate
-                                                             selectedDate:self.selectedDate
-                                                                   target:self
-                                                                   action:@selector(dateWasSelected:element:)
-                                                                   origin:self.view
-                                                             cancelAction:@selector(dateWasCancelled)];
-    
-    [(ActionSheetDatePicker *) self.actionSheetPicker setMinimumDate:minDate];
-    [(ActionSheetDatePicker *) self.actionSheetPicker setMaximumDate:maxDate];
-    
-    self.actionSheetPicker.hideCancel = NO;
-    [self.actionSheetPicker showActionSheetPicker];
-    
-}
-
-
 
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {

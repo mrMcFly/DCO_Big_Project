@@ -9,12 +9,13 @@
 #import "AppDelegate.h"
 #import "ASDatabaseManager.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import "SWRevealViewController.h"
 
 
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <SWRevealViewControllerDelegate>
 
 @end
 
@@ -43,6 +44,10 @@
 //        [self.window.rootViewController.view addSubview:view];
 //    }
     
+    SWRevealViewController* reveal = (SWRevealViewController*)self.window.rootViewController;
+    reveal.delegate = self;
+
+    
     return YES;
 }
 
@@ -53,6 +58,17 @@
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor orangeColor];
+}
+
+
+-(void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft){
+        [revealController.frontViewController.view setUserInteractionEnabled:YES];
+        [revealController.frontViewController.revealViewController tapGestureRecognizer];
+    }else{
+        [revealController.frontViewController.view setUserInteractionEnabled:NO];
+    }
 }
 
 
