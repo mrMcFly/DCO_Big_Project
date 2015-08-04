@@ -86,6 +86,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 @property (strong, nonatomic) UITextField       *nameField;
 
+@property (strong, nonatomic) UIDatePicker *datePicker;
+
 @end
 
 
@@ -112,7 +114,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     //[self checkAndSetIfCardHaveDefaultCategory];
     
-    //[self registerForKeyboardNotifications];
 }
 
 
@@ -120,7 +121,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
     [super viewWillDisappear:animated];
     
-    //[self disableForKeyboardNotifications];
 }
 
 
@@ -159,10 +159,98 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 #pragma mark - UITextFieldDelegate
 
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
+        
+        // [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
+        return YES;
+    }
+    return  YES;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    //[self animateTextField:textField up:YES];
+    //[self animateTableViewPositionForItem:textField up:YES];
+    
+    //set active field for keyboard handler methods (notifications)
+    self.activeField = textField;
+    
+    if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
+        ((ActionSheetDatePicker*)textField.inputView).target = textField;
+    
+    if ([textField.placeholder isEqualToString:@"Card Name"])  {
+        
+        self.nameField = textField;
+        
+        //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+        //                                       initWithTarget:self
+        //                                       action:@selector(dismissKeyboardTable)];
+        //
+        //        [self.nameField addGestureRecognizer:tap];
+        
+    } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
+        
+        [textField endEditing:YES];
+        [textField resignFirstResponder];
+        [self dismissKeyboardTable];
+        
+        [self selectADate];
+        
+        //        CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+        //        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+        //        self.choosenCellPath = indexPath;
+        //
+        //        self.datePicker = [[UIDatePicker alloc]init];
+        //        self.datePicker.datePickerMode = UIDatePickerModeDate;
+        //        [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+        //        [textField setInputView:self.datePicker];
+        
+    }else if ([textField.placeholder isEqualToString:@"Location"]) {
+        
+        [textField endEditing:YES];
+        [textField resignFirstResponder];
+        [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
+        
+    }else if ([textField.placeholder isEqualToString:@"Category"]) {
+        [textField endEditing:YES];
+        
+        //[self animateTableViewPositionForItem:textField up:YES];
+        
+        [textField resignFirstResponder];
+        [self selectCategory];
+        
+    }else if ([textField.placeholder isEqualToString:@"Add place"]) {
+        
+        [textField endEditing:YES];
+        
+        //[textField resignFirstResponder];
+        //NSLog(@"Add place");
+        
+        ASShowAllNearestPlacesVC *placesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ASShowAllNearestPlacesVC"];
+        
+        placesVC.longitude = self.location.longitude;
+        placesVC.latitude = self.location.latitude;
+        
+        
+        [self presentViewController:placesVC animated:YES completion:^{
+            // NSLog(@"Completion");
+        }];
+        
+    }else {
+        
+        NSLog(@"default");
+    }
+}
+
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     //[self animateTextField:textField up:NO];
-    [self animateTableViewPositionForItem:textField up:NO];
+    //[self animateTableViewPositionForItem:textField up:NO];
     
     if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
         ((ActionSheetDatePicker*)textField.inputView).target = nil;
@@ -191,26 +279,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 }
 
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    
-    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
-        [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
-        return YES;
-    }
-    
-    return  YES;
-}
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [textField resignFirstResponder];
-    
-    return YES;
-}
-
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
     BOOL shouldReplace = true;
@@ -219,70 +287,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 }
 
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-     //[self animateTextField:textField up:YES];
-    [self animateTableViewPositionForItem:textField up:YES];
+    [textField resignFirstResponder];
     
-    //set active field for keyboard handler methods (notifications)
-    self.activeField = textField;
-    
-    if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
-        ((ActionSheetDatePicker*)textField.inputView).target = textField;
-    
-    if ([textField.placeholder isEqualToString:@"Card Name"])  {
-        
-        self.nameField = textField;
-        
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-//                                       initWithTarget:self
-//                                       action:@selector(dismissKeyboardTable)];
-//        
-//        [self.nameField addGestureRecognizer:tap];
-        
-    } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
-        [textField endEditing:YES];
-        [textField resignFirstResponder];
-        [self dismissKeyboardTable];
-
-        [self selectADate];
-        
-    }else if ([textField.placeholder isEqualToString:@"Location"]) {
-        [textField endEditing:YES];
-
-        //[textField resignFirstResponder];
-        [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
-        
-    }else if ([textField.placeholder isEqualToString:@"Category"]) {
-        [textField endEditing:YES];
-        
-        [self animateTableViewPositionForItem:textField up:YES];
-
-        //[textField resignFirstResponder];
-        [self selectCategory];
-        
-    }else if ([textField.placeholder isEqualToString:@"Add place"]) {
-     
-        [textField endEditing:YES];
-
-        //[textField resignFirstResponder];
-        //NSLog(@"Add place");
-        
-        ASShowAllNearestPlacesVC *placesVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ASShowAllNearestPlacesVC"];
-
-        placesVC.longitude = self.location.longitude;
-        placesVC.latitude = self.location.latitude;
-        
-        
-        [self presentViewController:placesVC animated:YES completion:^{
-            // NSLog(@"Completion");
-        }];
-
-    }else {
-        
-        NSLog(@"default");
-    }
+    return YES;
 }
 
 
@@ -298,8 +307,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //use the UITableViewcell superview to get the NSIndexPath
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cell.center];
     
-    
-    textField.text = @"";
     ASCellInfo *infoCell = [self.itemsArray objectAtIndex:indexPath.row];
     infoCell.titleOfCell = nil;
 
@@ -336,9 +343,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             [self.tableView deleteRowsAtIndexPaths:pathArray withRowAnimation:UITableViewRowAnimationFade];
             [self.tableView endUpdates];
             
-            
         }
-        
         
         if (currentCell.titleOfCell.length == 0) {
             
@@ -362,7 +367,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
     }
     
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
     [textField resignFirstResponder];
     
     return NO;
@@ -399,7 +404,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
          infoCell.titleOfCell = [NSString stringWithFormat:@"%@",selectedValue];
          
          
-         [self animateTableViewPositionForItem:currentChosenCell up:NO];
+         //[self animateTableViewPositionForItem:currentChosenCell up:NO];
      }
      
      cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -439,36 +444,9 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     UITableViewCell *currentChosenCell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     //[self animateTextField:textField up:YES];
-    [self animateTableViewPositionForItem:currentChosenCell up:YES];
+    //[self animateTableViewPositionForItem:currentChosenCell up:YES];
 
 }
-
-- (void)selectADateForField:(UITextField*)textField {
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
-    NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
-    
-    int yearsToAdd = 5;
-    NSDate *maxDate = [minDate dateByAddingTimeInterval:60 * 60 * 24 * 365 * yearsToAdd];
-    
-    self.actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"Expiraton date"
-                                                           datePickerMode:UIDatePickerModeDate
-                                                             selectedDate:self.selectedDate
-                                                                   target:self
-                                                                   action:@selector(dateWasSelected:element:)
-                                                                   origin:self.view
-                                                             cancelAction:@selector(dateWasCancelled)];
-    
-    [(ActionSheetDatePicker *) self.actionSheetPicker setMinimumDate:minDate];
-    [(ActionSheetDatePicker *) self.actionSheetPicker setMaximumDate:maxDate];
-    
-    self.actionSheetPicker.hideCancel = NO;
-    [self.actionSheetPicker showActionSheetPicker];
-    
-}
-
-
 
 
 - (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
@@ -497,7 +475,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //change content offset for textField when edit is end.
     //[self animateTextField:textField up:NO];
     [self.tableView reloadData];
-    [self animateTableViewPositionForItem:currentChosenCell up:NO];    
+    //[self animateTableViewPositionForItem:currentChosenCell up:NO];
 }
 
 
@@ -508,7 +486,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     UITableViewCell *currentChosenCell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     //[self animateTextField:textField up:NO];
-    [self animateTableViewPositionForItem:currentChosenCell up:NO];
+    //[self animateTableViewPositionForItem:currentChosenCell up:NO];
 }
 
 
@@ -571,9 +549,10 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         [((ASTextFieldCell*)cell).textField addTarget:self action:@selector(checkButtonTapped:)  forControlEvents:UIControlEventTouchUpInside];//UIControlEventEditingDidBegin
         
+        ((ASTextFieldCell*)cell).textField.text = nil;
+        
         ASCellInfo *infoCellForTextField = [self.itemsArray objectAtIndex:indexPath.row];
     
-        NSLog(@"infoCellForTextField.titleOfCell.length == %ld", infoCellForTextField.titleOfCell.length);
 
         if (infoCellForTextField.titleOfCell.length == 0) {
             
@@ -1326,76 +1305,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     self.availableCategories = [[ASDatabaseManager sharedManager]getAllDataFromDBtableName:@"category"];
 }
 
-
-#pragma mark - Keyboard notifications and handler methods.
-
-- (void)registerForKeyboardNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-}
-
-
-- (void)disableForKeyboardNotifications {
-    
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardDidHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardDidShowNotification object:nil];
-}
-
-
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-//    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-//    self.tableView.contentInset = contentInsets;
-//    self.tableView.scrollIndicatorInsets = contentInsets;
-    
-    NSLog(@"%@",[aNotification userInfo]);
-    //=====================================
-//    CGRect frame = self.view.frame;
-//    frame.origin.y = -30;
-//    
-//    [UIView animateWithDuration:0.3 animations:^{
-//        self.view.frame = frame;
-//    }];
-//    
-    //-===================
-    
-    
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-//    CGRect aRect = self.view.frame;
-//    aRect.size.height -= kbSize.height;
-//    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
-//        [self.tableView scrollRectToVisible:self.activeField.frame animated:YES];
-//    }
-}
-
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-//    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-//    self.tableView.contentInset = contentInsets;
-//    self.tableView.scrollIndicatorInsets = contentInsets;
-    
-    CGRect frame = self.view.frame;
-    frame.origin.y = 0;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.frame = frame;
-    }];
-    
-}
-
-
 -(void)dismissKeyboardTable{
     
 //    [self.nameField becomeFirstResponder];
@@ -1403,5 +1312,22 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 //    [self.nameField resignFirstResponder];
 }
 
+
+- (void)updateTextField:(UIDatePicker*)sender {
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    ((ASTextFieldCell*)cell).textField.text = [dateFormatter stringFromDate:sender.date];
+}
+
+
+- (NSIndexPath*) defineIndexPathForTextField:(UITextField*)tField {
+    
+    CGPoint buttonPosition = [tField convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    
+    return indexPath;
+}
 
 @end

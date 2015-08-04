@@ -10,6 +10,7 @@
 #import "ASBaseVC.h"
 #import "ASCategoryIconsVC.h"
 
+
 @interface ASAddNewCategoryVC : ASBaseVC //<ASCategoryIconsViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameOfCategoryField;
