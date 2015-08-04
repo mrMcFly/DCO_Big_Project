@@ -31,6 +31,9 @@
     //PageControl settings.
     [self setDefaultPageControl];
     
+    //I set in Plist (Status bar is initially hidden == YES) for LaunchImage, so here Status bar "come back,baby":).
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:1.000 green:0.345 blue:0.110 alpha:1.000]];
     
 //    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))

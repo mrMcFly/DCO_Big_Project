@@ -23,7 +23,7 @@
 }
 
 
-- (IBAction)actionConfirmOrcancelNotifications:(UIButton *)sender {
+- (IBAction)actionConfirmOrCancelNotifications:(UIButton *)sender {
     
     NSLog(@"actionConfirmOrcancelNotifications");
 }

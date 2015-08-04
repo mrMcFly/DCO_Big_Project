@@ -11,15 +11,13 @@
 @implementation ASCardImageCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    self.imgButton.contentMode = UIViewContentModeScaleAspectFit;
     
+    self.imgButton.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end

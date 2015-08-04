@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *confirmNotificationsButton;
 
-- (IBAction)actionConfirmOrcancelNotifications:(UIButton *)sender;
+- (IBAction)actionConfirmOrCancelNotifications:(UIButton *)sender;
 
 @end

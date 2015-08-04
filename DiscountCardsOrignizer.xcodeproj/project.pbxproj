@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		194E9AD91B6CB97700FE2F59 /* ASImagePickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 194E9AD81B6CB97700FE2F59 /* ASImagePickerVC.m */; };
+		1962438D1B6F7D2B0070E40B /* ASCellInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1962438C1B6F7D2B0070E40B /* ASCellInfo.m */; };
 		19A993301B6B79860063727F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A9932F1B6B79860063727F /* main.m */; };
 		19A993331B6B79860063727F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A993321B6B79860063727F /* AppDelegate.m */; };
 		19A993391B6B79860063727F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19A993371B6B79860063727F /* Main.storyboard */; };
@@ -174,6 +175,8 @@
 /* Begin PBXFileReference section */
 		194E9AD71B6CB97700FE2F59 /* ASImagePickerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASImagePickerVC.h; path = "ImagePicker Custom/ASImagePickerVC.h"; sourceTree = "<group>"; };
 		194E9AD81B6CB97700FE2F59 /* ASImagePickerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASImagePickerVC.m; path = "ImagePicker Custom/ASImagePickerVC.m"; sourceTree = "<group>"; };
+		1962438B1B6F7D2B0070E40B /* ASCellInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASCellInfo.h; path = Models/ASCellInfo.h; sourceTree = "<group>"; };
+		1962438C1B6F7D2B0070E40B /* ASCellInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASCellInfo.m; path = Models/ASCellInfo.m; sourceTree = "<group>"; };
 		19A9932A1B6B79860063727F /* DiscountCardsOrignizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiscountCardsOrignizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19A9932E1B6B79860063727F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19A9932F1B6B79860063727F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -508,6 +511,8 @@
 				19A993751B6B88AD0063727F /* ASPhoto.m */,
 				19A993761B6B88AD0063727F /* ASPlace.h */,
 				19A993771B6B88AD0063727F /* ASPlace.m */,
+				1962438B1B6F7D2B0070E40B /* ASCellInfo.h */,
+				1962438C1B6F7D2B0070E40B /* ASCellInfo.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -630,10 +635,10 @@
 			children = (
 				19A995531B6BB5C10063727F /* ASCardImageCell.h */,
 				19A995541B6BB5C20063727F /* ASCardImageCell.m */,
-				19A995551B6BB5C20063727F /* ASNotificationsCell.h */,
-				19A995561B6BB5C20063727F /* ASNotificationsCell.m */,
 				19A995571B6BB5C20063727F /* ASTextFieldCell.h */,
 				19A995581B6BB5C20063727F /* ASTextFieldCell.m */,
+				19A995551B6BB5C20063727F /* ASNotificationsCell.h */,
+				19A995561B6BB5C20063727F /* ASNotificationsCell.m */,
 			);
 			name = "Card New";
 			sourceTree = "<group>";
@@ -1174,6 +1179,7 @@
 				19A994FD1B6B9B9B0063727F /* ASSideBarVC.m in Sources */,
 				19A995091B6B9BEB0063727F /* ASTipsScreenVC.m in Sources */,
 				19A995861B6BD2CD0063727F /* ASGooglePlacesConnection.m in Sources */,
+				1962438D1B6F7D2B0070E40B /* ASCellInfo.m in Sources */,
 				19A995671B6BB5D40063727F /* ASCardDetailsExpDateCell.m in Sources */,
 				19A997C11B6BE74E0063727F /* SWRevealViewController.m in Sources */,
 				19A995591B6BB5C20063727F /* ASCardImageCell.m in Sources */,
@@ -1324,6 +1330,7 @@
 			baseConfigurationReference = D86BEBA46ED8211E459A85B2 /* Pods-DiscountCardsOrignizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = DiscountCardsOrignizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1336,6 +1343,7 @@
 			baseConfigurationReference = D633EFCEDE9C53CDDF130A44 /* Pods-DiscountCardsOrignizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = DiscountCardsOrignizer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

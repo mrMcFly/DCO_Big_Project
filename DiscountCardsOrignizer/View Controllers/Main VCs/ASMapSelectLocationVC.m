@@ -46,11 +46,8 @@
 
 
 -(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
     
-    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    NSLog(@"%@", [self deviceLocation]);
+    [super viewDidAppear:YES];
     
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
@@ -59,23 +56,19 @@
     region.span.longitudeDelta = 0.005f;
     region.span.longitudeDelta = 0.005f;
     [self.mapView setRegion:region animated:YES];
-    
-    [self.locationManager startUpdatingLocation];
-
-    self.geoCoder = [[CLGeocoder alloc]init];
-
 }
 
 
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+
     if (self.locationManager)
     {
         self.mapView.showsUserLocation = NO;
         [self.locationManager stopUpdatingLocation];
     }
-    [super viewWillDisappear:animated];
 }
 
 
@@ -114,28 +107,29 @@
 
 
 - (void) mapViewSetup {
-
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
-
-//#ifdef __IPHONE_8_0
-    if(IS_OS_8_OR_LATER) {
-        
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-            // Use one or the other, not both. Depending on what you put in info.plist
-            //[self.locationManager requestWhenInUseAuthorization];
-            [self.locationManager requestAlwaysAuthorization];
-        }
+    
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
     }
-//#endif
+    
+    
     [self.locationManager startUpdatingLocation];
 
+    self.mapView.showsUserLocation = YES;
+    
     //Default values in storyboard for MapView
 //    self.mapView.showsUserLocation = YES;
 //    [self.mapView setMapType:MKMapTypeStandard];
 //    [self.mapView setZoomEnabled:YES];
 //    [self.mapView setScrollEnabled:YES];
     
+    self.geoCoder = [[CLGeocoder alloc]init];
 }
 
 
@@ -236,6 +230,9 @@
     
 //    [self.locationManager requestAlwaysAuthorization];
 //    [self.locationManager startUpdatingLocation];
+//    
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+//    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 }
 
 

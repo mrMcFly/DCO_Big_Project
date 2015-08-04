@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="L9G-Yk-K3H">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -423,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfb-Vu-8av" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168" y="705"/>
+            <point key="canvasLocation" x="2356" y="503"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="oib-KG-aVg">
@@ -609,13 +608,14 @@
                             <constraint firstItem="DwX-5t-oGZ" firstAttribute="top" secondItem="8Mz-9G-4yR" secondAttribute="bottom" constant="23" id="ukH-mk-JNw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="8jp-gh-wN1"/>
                     <connections>
                         <outlet property="imagesCarousel" destination="KfS-rD-64d" id="cZ2-Wz-GW5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHm-Fw-8uW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="705"/>
+            <point key="canvasLocation" x="2592" y="735"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ia1-B0-ocB">
@@ -628,7 +628,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ZfR-BI-Lim" kind="relationship" relationship="rootViewController" id="CzW-H3-4s7"/>
+                        <segue destination="otO-xm-He6" kind="relationship" relationship="rootViewController" id="uat-Xi-MS6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OcF-Vm-FhW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1230,7 +1230,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uhw-d0-6ls" id="0Gq-36-9Hw">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="13" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="D5q-Ty-JNd">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontSizeToFit="NO" minimumFontSize="13" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D5q-Ty-JNd">
                                                     <rect key="frame" x="55" y="7" width="491" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" returnKeyType="done"/>
@@ -1272,7 +1272,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="actionConfirmOrcancelNotifications:" destination="I0h-J0-LjT" eventType="touchUpInside" id="Gc2-d3-TVk"/>
+                                                        <action selector="actionConfirmOrCancelNotifications:" destination="I0h-J0-LjT" eventType="touchUpInside" id="TB4-96-a8C"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2063,6 +2063,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="uOq-Sc-bBS"/>
                     <connections>
                         <outlet property="messageButtonView" destination="ziQ-Ek-S09" id="gJL-7S-ajx"/>
                         <outlet property="skipButton" destination="DXF-Ku-0Hm" id="UdT-W2-YhT"/>
@@ -2070,7 +2071,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ybk-k6-MGa" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2555" y="2300"/>
+            <point key="canvasLocation" x="2459" y="1796"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="g2N-iB-jn2">
@@ -2172,7 +2173,8 @@
         <image name="splash_logo.png" width="200" height="333"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Mcv-qc-PPw"/>
+        <segue reference="uat-Xi-MS6"/>
+        <segue reference="waC-0E-d7a"/>
         <segue reference="FLd-4f-0Al"/>
         <segue reference="Gj0-wk-grS"/>
     </inferredMetricsTieBreakers>

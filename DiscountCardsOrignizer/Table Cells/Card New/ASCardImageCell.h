@@ -7,20 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ASCardImageCell;
-
-@protocol ASCardImageCellDelegate <NSObject>
-
-- (void)setImageForCell:(ASCardImageCell*)cell;
-
-@end
 
 @interface ASCardImageCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *imgButton;
-@property (strong, nonatomic) UIImage *chosenImage;
-//@property (weak, nonatomic) UISwitch *swithElem;
-//@property (weak, nonatomic) id <ASCardImageCellDelegate> delegate;
 
 @end
 
