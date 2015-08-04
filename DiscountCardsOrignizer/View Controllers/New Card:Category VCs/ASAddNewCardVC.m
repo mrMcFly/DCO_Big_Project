@@ -162,7 +162,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
     //[self animateTextField:textField up:NO];
-    [self animateTableViewPositionForItem:textField up:NO];
+    //[self animateTableViewPositionForItem:textField up:NO];
     
     if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
         ((ActionSheetDatePicker*)textField.inputView).target = nil;
@@ -222,7 +222,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
      //[self animateTextField:textField up:YES];
-    [self animateTableViewPositionForItem:textField up:YES];
+    //[self animateTableViewPositionForItem:textField up:YES];
     
     //set active field for keyboard handler methods (notifications)
     self.activeField = textField;
@@ -257,7 +257,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     }else if ([textField.placeholder isEqualToString:@"Category"]) {
         [textField endEditing:YES];
         
-        [self animateTableViewPositionForItem:textField up:YES];
+        //[self animateTableViewPositionForItem:textField up:YES];
 
         //[textField resignFirstResponder];
         [self selectCategory];
@@ -399,7 +399,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
          infoCell.titleOfCell = [NSString stringWithFormat:@"%@",selectedValue];
          
          
-         [self animateTableViewPositionForItem:currentChosenCell up:NO];
+         //[self animateTableViewPositionForItem:currentChosenCell up:NO];
      }
      
      cancelBlock:^(ActionSheetStringPicker *picker) {
@@ -439,7 +439,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     UITableViewCell *currentChosenCell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     //[self animateTextField:textField up:YES];
-    [self animateTableViewPositionForItem:currentChosenCell up:YES];
+    //[self animateTableViewPositionForItem:currentChosenCell up:YES];
 
 }
 
@@ -497,7 +497,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //change content offset for textField when edit is end.
     //[self animateTextField:textField up:NO];
     [self.tableView reloadData];
-    [self animateTableViewPositionForItem:currentChosenCell up:NO];    
+    //[self animateTableViewPositionForItem:currentChosenCell up:NO];
 }
 
 
@@ -508,7 +508,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     UITableViewCell *currentChosenCell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     //[self animateTextField:textField up:NO];
-    [self animateTableViewPositionForItem:currentChosenCell up:NO];
+    //[self animateTableViewPositionForItem:currentChosenCell up:NO];
 }
 
 

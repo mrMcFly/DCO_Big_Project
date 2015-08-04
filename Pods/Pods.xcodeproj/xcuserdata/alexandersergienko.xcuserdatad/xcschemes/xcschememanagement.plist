@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DiscountCardsOrignizer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -12,7 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26E8290928CA0435D40C0BE7</key>
+		<key>18DC6F77A9AB6F94DA8276D4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>54DF8D7A1AC859003091AF08</key>
 		<dict>
 			<key>primary</key>
 			<true/>
