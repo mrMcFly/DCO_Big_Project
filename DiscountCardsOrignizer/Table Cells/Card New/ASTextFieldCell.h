@@ -11,6 +11,5 @@
 @interface ASTextFieldCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
-@property (strong, nonatomic) NSString *tempField;
 
 @end
