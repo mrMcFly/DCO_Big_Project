@@ -44,13 +44,14 @@ typedef enum {
 
 
 @interface ASAddNewCardVC () <UITableViewDataSource, UITableViewDelegate,
-UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate, UIActionSheetDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 //custom action sheet
 @property (strong, nonatomic) AbstractActionSheetPicker *actionSheetPicker;
 
 //for database
 @property (strong, nonatomic) NSDate *selectedDate;
+@property (strong, nonatomic) NSString *selectedCategory;
 
 @property (strong, nonatomic) ASCard *card;
 @property (strong, nonatomic) ASPhoto *photo;
@@ -113,6 +114,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     [self.navigationController.navigationBar setHidden:NO];
     
     //[self checkAndSetIfCardHaveDefaultCategory];
+    NSLog(@"viewWillAppear===========================");
+    
+    ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    [cell resignFirstResponder];
+    NSLog(@"path = %ld",(long)self.choosenCellPath.row);
     
 }
 
@@ -144,6 +150,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         [self showAlertForType:ASAlertTypeForCardShouldHaveNameAndPhoto];
     }
+    
 }
 
 
@@ -162,11 +169,35 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    NSLog(@"textFieldShouldBeginEditing");
+    CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    self.choosenCellPath = indexPath;
+    
+    
+    NSLog(@"cellpath = %ld",(long)self.choosenCellPath.row);
+    if (self.choosenCellPath.row == 4) {
+        NSLog(@"Location");
+        ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    //[cell.textField endEditing:YES];
+       // [cell.textField resignFirstResponder];
+    }
+    
+    
+    if ([textField.placeholder isEqualToString:@"Location"]) {
+        NSLog(@"Location Blow is work, fine)");
+         [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
+        return NO;
+    }
+    NSLog(@"textFieldShouldBeginEditing %@",textField.text);
+    
+//    ASTextFieldCell *textFieldCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+//    NSLog(@"index = %ld",(long)self.choosenCellPath.row);
+//    [textFieldCell resignFirstResponder];
     
 //    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
 //        
 //         [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
+    
 //        return YES;
 //    }
     
@@ -178,12 +209,17 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    NSLog(@"textFieldDidBeginEditing");
+    NSLog(@"textFieldDidBeginEditing %@",textField.text);
     //[self animateTextField:textField up:YES];
     //[self animateTableViewPositionForItem:textField up:YES];
     
     //set active field for keyboard handler methods (notifications)
     self.activeField = textField;
+    
+    
+//    CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+//    self.choosenCellPath = indexPath;
     
     if ([textField.inputView isKindOfClass:[ActionSheetDatePicker class]] )
         ((ActionSheetDatePicker*)textField.inputView).target = textField;
@@ -199,37 +235,54 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         //        [self.nameField addGestureRecognizer:tap];
         
     } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
 //        [textField endEditing:YES];
 //        [textField resignFirstResponder];
 //        [self dismissKeyboardTable];
 //        
 //        [self selectADate];
         
-                CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
-                NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-                self.choosenCellPath = indexPath;
+//                CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+//                NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+//                self.choosenCellPath = indexPath;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateStyle:NSDateFormatterLongStyle];
         textField.text = [dateFormatter stringFromDate:[NSDate date]];
                 
         [self selectADateForTextField:textField];
-        
+
         
     }else if ([textField.placeholder isEqualToString:@"Location"]) {
         
-        [textField endEditing:YES];
-        [textField resignFirstResponder];
+        //textField.userInteractionEnabled = NO;
+        ASTextFieldCell *textFieldCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+        NSLog(@"index = %ld",(long)self.choosenCellPath.row);
+        //[textFieldCell resignFirstResponder];
+        
+//        [textField endEditing:YES];
+        //[textField resignFirstResponder];
         [self performSegueWithIdentifier:@"createSelectLocationSegue" sender:nil];
         
     }else if ([textField.placeholder isEqualToString:@"Category"]) {
-        [textField endEditing:YES];
+    //} else if(indexPath.row == [self.itemsArray count] - 2) {
+  
+        //[textField endEditing:YES];
         
         //[self animateTableViewPositionForItem:textField up:YES];
         
-        [textField resignFirstResponder];
-        [self selectCategory];
+        //[textField resignFirstResponder];
+        //[self selectCategory];
+        
+        
+        [self selectACategoryForTextField:textField];
+        
+        
+        //self.datePicker = nil;
+//        UIPickerView *pickerView = [[UIPickerView alloc]init];
+//        pickerView.delegate = self;
+//        pickerView.dataSource = self;
+//        
+//        textField.inputView = pickerView;
         
     }else if ([textField.placeholder isEqualToString:@"Add place"]) {
         
@@ -252,12 +305,16 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         NSLog(@"default");
     }
+    
+//    CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+//    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+//    self.choosenCellPath = indexPath;
 }
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
-    NSLog(@"textFieldDidEndEditing");
+    NSLog(@"textFieldDidEndEditing %@",textField.text);
     //[self animateTextField:textField up:NO];
     //[self animateTableViewPositionForItem:textField up:NO];
     
@@ -285,6 +342,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             infoCell.titleOfCell = textField.text;
         }
     }
+    
 }
 
 
@@ -515,22 +573,50 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     self.datePicker.minimumDate = minDate;
     self.datePicker.maximumDate = maxDate;
     
-    
     [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     [textField setInputView:self.datePicker];
+    
+    [self createToolbarWithBarButtonsForTextField:textField];
+}
+
+
+- (void) selectACategoryForTextField:(UITextField*)textField {
+
+    UIPickerView *pickerView = [[UIPickerView alloc]init];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    [textField setInputView:pickerView];
+    
+    NSInteger itemRowIndex = 0;
+    
+    for (NSInteger i = 0; i < [self.availableCategories count]; i ++) {
+      
+        ASCategory *category  = [self.availableCategories objectAtIndex:i];
+        if ([category.name isEqualToString:self.categoryForNewCard.name]) {
+            itemRowIndex = i;
+        }
+    }
+    
+    [pickerView selectRow:itemRowIndex inComponent:0 animated:YES];
+    
+    [self createToolbarWithBarButtonsForTextField:textField];
+}
+
+
+- (void) createToolbarWithBarButtonsForTextField:(UITextField*)textField {
     
     UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
     //[toolBar setTintColor:[UIColor orangeColor]];
     
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionBarButtonCancel)];
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionBarButtonChoseCancel)];
     NSDictionary *cancelButtonAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
     [cancelButton setTitleTextAttributes:cancelButtonAttributes forState:UIControlStateNormal];
     
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showSelectedDate)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(actionBarButtonChoseDone)];
     NSDictionary *doneButtonAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.041 green:0.738 blue:0.167 alpha:1.000]};
     [doneButton setTitleTextAttributes:doneButtonAttributes forState:UIControlStateNormal];
     
-    UIBarButtonItem *titleButton = [[UIBarButtonItem alloc]initWithTitle:@"Expiration date" style:UIBarButtonItemStylePlain target:nil action:nil];
+    UIBarButtonItem *titleButton = [[UIBarButtonItem alloc]initWithTitle:@"Category" style:UIBarButtonItemStylePlain target:nil action:nil];
     titleButton.enabled = NO;
     NSDictionary *titleButtonAttributes = @{NSForegroundColorAttributeName:[UIColor blueColor]};
     [titleButton setTitleTextAttributes:titleButtonAttributes forState:UIControlStateNormal];
@@ -539,6 +625,44 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     [toolBar setItems:[NSArray arrayWithObjects:cancelButton,spaceButton,titleButton,spaceButton,doneButton, nil]];
     [textField setInputAccessoryView:toolBar];
+}
+
+
+#pragma mark - UIPickerViewDataSource
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    
+    return 1;
+}
+
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    return [self.availableCategories count];
+}
+
+
+#pragma mark - UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    ASCategory *category = [self.availableCategories objectAtIndex:row];
+    NSString *categoryName = category.name;
+    
+    return categoryName;
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    ASCategory *category = [self.availableCategories objectAtIndex:row];
+    NSString *categoryName = category.name;
+    
+    ASTextFieldCell *categoryCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    categoryCell.textField.text = categoryName;
+    
+    self.selectedCategory = categoryName;
 }
 
 
@@ -605,8 +729,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         ASCellInfo *infoCellForTextField = [self.itemsArray objectAtIndex:indexPath.row];
     
-
-        if (infoCellForTextField.titleOfCell.length == 0) {
+//if this line work then problem with situation when we have default category fot new Card,
+        //if (infoCellForTextField.titleOfCell.length == 0) {
             
             NSString *placeholderText = nil;
 
@@ -624,10 +748,10 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             
              ((ASTextFieldCell*)cell).textField.placeholder = placeholderText;
         
-        }else{
+        //}else{
             
             ((ASTextFieldCell*)cell).textField.text = infoCellForTextField.titleOfCell;
-        }
+        //}
     }
     
     return cell;
@@ -1058,7 +1182,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     
-
     ASCellInfo *infoCell = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
     
     
@@ -1079,17 +1202,20 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
                 
     } else if ([segue.identifier isEqualToString:@"unwindFromMapSelectLocation"]) {
     
+        ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+        
+        ASCellInfo *cellInfo = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+        
+        
     ASMapSelectLocationVC *mapVC = segue.sourceViewController;
         
     NSString *locationCardAdress = mapVC.selectedLocationForCardField.text;
-    
         
         if (locationCardAdress && ![locationCardAdress isEqualToString:@"Undefined place"]) {
             
             self.location.locationTitle = locationCardAdress;
-            
+            cell.textField.text = locationCardAdress;
             infoCell.titleOfCell = locationCardAdress;
-            NSLog(@"=========!!!!!!!!!!============ location = %@",locationCardAdress);
             
         }else{
             
@@ -1101,7 +1227,10 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     self.location.longitude = mapVC.longitude;
     self.location.latitude = mapVC.latitude;
     
-    self.choosenCellPath = mapVC.indexPath;
+        NSLog(@"cellpath = %ld",self.choosenCellPath.row);
+        NSLog(@"cellpath = %ld",mapVC.indexPath.row);
+
+    //self.choosenCellPath = mapVC.indexPath;
         
 
     //functional for "Add new fields (Add Place, Location) if field location is chose"
@@ -1377,19 +1506,40 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 }
 
 
-- (void) showSelectedDate {
+- (void) actionBarButtonChoseDone {
     
     ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
-    
-    NSDate *chosenDate = self.datePicker.date;
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-
     ASCellInfo *cellInfo = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
-    cellInfo.titleOfCell = [dateFormatter stringFromDate:chosenDate];
+    
+    if ([cell.textField.placeholder isEqualToString:@"Exp.date"]) {
+        NSDate *chosenDate = self.datePicker.date;
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        cellInfo.titleOfCell = [dateFormatter stringFromDate:chosenDate];
+        
+    }else if ([cell.textField.placeholder isEqualToString:@"Category"]) {
+        cellInfo.titleOfCell = self.selectedCategory;
+    }
     
     [cell.textField resignFirstResponder];
+}
+
+
+- (void) actionBarButtonChoseCancel {
+    
+    ASTextFieldCell *textFieldCell =
+    (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    textFieldCell.textField.text = @"";
+    
+    ASCellInfo *infoCell =
+    [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+    infoCell.titleOfCell = @"";
+    
+    if (self.categoryForNewCard) {
+        self.categoryForNewCard = nil;
+    }
+    
+    [textFieldCell.textField resignFirstResponder];
 }
 
 

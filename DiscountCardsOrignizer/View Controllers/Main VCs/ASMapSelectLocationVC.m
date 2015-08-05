@@ -50,12 +50,12 @@
     [super viewDidAppear:YES];
     
     //View Area
-    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    region.center.latitude = self.locationManager.location.coordinate.latitude;
-    region.center.longitude = self.locationManager.location.coordinate.longitude;
-    region.span.longitudeDelta = 0.005f;
-    region.span.longitudeDelta = 0.005f;
-    [self.mapView setRegion:region animated:YES];
+//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+//    region.center.latitude = self.locationManager.location.coordinate.latitude;
+//    region.center.longitude = self.locationManager.location.coordinate.longitude;
+//    region.span.longitudeDelta = 0.005f;
+//    region.span.longitudeDelta = 0.005f;
+//    [self.mapView setRegion:region animated:YES];
 }
 
 
@@ -108,8 +108,14 @@
 
 - (void) mapViewSetup {
     
+    self.mapView.delegate = self;
+    
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    if (self.locationManager) {
+        NSLog(@"Work");
+    }
     
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -130,6 +136,14 @@
 //    [self.mapView setScrollEnabled:YES];
     
     self.geoCoder = [[CLGeocoder alloc]init];
+    
+    
+    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+    region.center.latitude = self.locationManager.location.coordinate.latitude;
+    region.center.longitude = self.locationManager.location.coordinate.longitude;
+    region.span.longitudeDelta = 0.005f;
+    region.span.longitudeDelta = 0.005f;
+    [self.mapView setRegion:region animated:YES];
 }
 
 
@@ -258,10 +272,23 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     CLLocation *location = [locations lastObject];
-//    self.latitudeValue.text = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-//    self.longtitudeValue.text = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];
+    
+    
     NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    
+//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+//    region.center.latitude = self.locationManager.location.coordinate.latitude;
+//    region.center.longitude = self.locationManager.location.coordinate.longitude;
+//    region.span.longitudeDelta = 0.005f;
+//    region.span.longitudeDelta = 0.005f;
+//    [self.mapView setRegion:region animated:YES];
     
     NSLog(@"%@ %@", latitude, longitude);
     
