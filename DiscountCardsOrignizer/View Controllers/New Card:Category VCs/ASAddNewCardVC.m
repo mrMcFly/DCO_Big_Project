@@ -162,17 +162,23 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
-    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
-        
-        // [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
-        return YES;
-    }
+    NSLog(@"textFieldShouldBeginEditing");
+    
+//    if ([textField.placeholder isEqualToString:@"Exp.date"]) {
+//        
+//         [self.nameField resignFirstResponder]; //important line (without-keyboard stay)
+//        return YES;
+//    }
+    
+    //[self.nameField resignFirstResponder]; //important line (without-keyboard stay)
+
     return  YES;
 }
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    NSLog(@"textFieldDidBeginEditing");
     //[self animateTextField:textField up:YES];
     //[self animateTableViewPositionForItem:textField up:YES];
     
@@ -194,20 +200,22 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
     } else if([textField.placeholder isEqualToString:@"Exp.date"]) {
         
-        [textField endEditing:YES];
-        [textField resignFirstResponder];
-        [self dismissKeyboardTable];
+//        [textField endEditing:YES];
+//        [textField resignFirstResponder];
+//        [self dismissKeyboardTable];
+//        
+//        [self selectADate];
         
-        [self selectADate];
+                CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
+                NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+                self.choosenCellPath = indexPath;
         
-        //        CGPoint buttonPosition = [textField convertPoint:CGPointZero toView:self.tableView];
-        //        NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-        //        self.choosenCellPath = indexPath;
-        //
-        //        self.datePicker = [[UIDatePicker alloc]init];
-        //        self.datePicker.datePickerMode = UIDatePickerModeDate;
-        //        [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
-        //        [textField setInputView:self.datePicker];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        textField.text = [dateFormatter stringFromDate:[NSDate date]];
+                
+        [self selectADateForTextField:textField];
+        
         
     }else if ([textField.placeholder isEqualToString:@"Location"]) {
         
@@ -249,6 +257,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
+    NSLog(@"textFieldDidEndEditing");
     //[self animateTextField:textField up:NO];
     //[self animateTableViewPositionForItem:textField up:NO];
     
@@ -306,7 +315,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     //use the UITableViewcell superview to get the NSIndexPath
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:cell.center];
-    
+    NSLog(@"indexpath = %ld",(long)indexPath.row);
     ASCellInfo *infoCell = [self.itemsArray objectAtIndex:indexPath.row];
     infoCell.titleOfCell = nil;
 
@@ -487,6 +496,49 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     UITableViewCell *currentChosenCell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     //[self animateTextField:textField up:NO];
     //[self animateTableViewPositionForItem:currentChosenCell up:NO];
+}
+
+
+- (void) selectADateForTextField:(UITextField*)textField {
+    
+    self.datePicker = [[UIDatePicker alloc]init];
+    self.datePicker.datePickerMode = UIDatePickerModeDate;
+
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *currentDate = [NSDate date];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc]init];
+    [dateComponents setYear:10];
+    NSDate *maxDate = [calendar dateByAddingComponents:dateComponents toDate:currentDate options:0];
+    NSDate *minDate = currentDate;
+    
+    self.datePicker.minimumDate = minDate;
+    self.datePicker.maximumDate = maxDate;
+    
+    
+    [self.datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    [textField setInputView:self.datePicker];
+    
+    UIToolbar *toolBar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 44)];
+    //[toolBar setTintColor:[UIColor orangeColor]];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(actionBarButtonCancel)];
+    NSDictionary *cancelButtonAttributes = @{NSForegroundColorAttributeName:[UIColor redColor]};
+    [cancelButton setTitleTextAttributes:cancelButtonAttributes forState:UIControlStateNormal];
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showSelectedDate)];
+    NSDictionary *doneButtonAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.041 green:0.738 blue:0.167 alpha:1.000]};
+    [doneButton setTitleTextAttributes:doneButtonAttributes forState:UIControlStateNormal];
+    
+    UIBarButtonItem *titleButton = [[UIBarButtonItem alloc]initWithTitle:@"Expiration date" style:UIBarButtonItemStylePlain target:nil action:nil];
+    titleButton.enabled = NO;
+    NSDictionary *titleButtonAttributes = @{NSForegroundColorAttributeName:[UIColor blueColor]};
+    [titleButton setTitleTextAttributes:titleButtonAttributes forState:UIControlStateNormal];
+    
+    UIBarButtonItem *spaceButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [toolBar setItems:[NSArray arrayWithObjects:cancelButton,spaceButton,titleButton,spaceButton,doneButton, nil]];
+    [textField setInputAccessoryView:toolBar];
 }
 
 
@@ -954,15 +1006,16 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 //}
 
 
-#warning CHECK IF THIS METOD IS NEEDED.
 - (void)checkButtonTapped:(id)sender {
+    
+    [self.nameField resignFirstResponder];
     
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     
-    if (indexPath.row != 2){
-        [self dismissKeyboardTable];
-    }
+//    if (indexPath.row != 2){
+//        [self dismissKeyboardTable];
+//    }
     
     if (indexPath != nil) {
         
@@ -1317,8 +1370,26 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    
     ((ASTextFieldCell*)cell).textField.text = [dateFormatter stringFromDate:sender.date];
+}
+
+
+- (void) showSelectedDate {
+    
+    ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    
+    NSDate *chosenDate = self.datePicker.date;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+
+    ASCellInfo *cellInfo = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+    cellInfo.titleOfCell = [dateFormatter stringFromDate:chosenDate];
+    
+    [cell.textField resignFirstResponder];
 }
 
 
@@ -1329,5 +1400,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     return indexPath;
 }
+
+
 
 @end

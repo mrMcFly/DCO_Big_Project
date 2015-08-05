@@ -66,6 +66,7 @@
     if(position == FrontViewPositionLeft){
         [revealController.frontViewController.view setUserInteractionEnabled:YES];
         [revealController.frontViewController.revealViewController tapGestureRecognizer];
+        [revealController.frontViewController.revealViewController panGestureRecognizer];
     }else{
         [revealController.frontViewController.view setUserInteractionEnabled:NO];
     }
