@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E1F41165AA80FC28D5C05A11"
+               BlueprintIdentifier = "8AC8656CE9B6D1FA71711913"
                BuildableName = "libPods-DiscountCardsOrignizer.a"
                BlueprintName = "Pods-DiscountCardsOrignizer"
                ReferencedContainer = "container:Pods.xcodeproj">

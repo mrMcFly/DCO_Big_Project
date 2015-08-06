@@ -49,7 +49,6 @@
     
     //if we make popToRootViewController (example AddNewCard-Save-popToRootViewController->) we lose navigation bar
     [self.navigationController.navigationBar setHidden:NO];
-
 }
 
 
