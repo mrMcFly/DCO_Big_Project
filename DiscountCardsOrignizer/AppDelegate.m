@@ -16,7 +16,7 @@
 
 
 @interface AppDelegate () <SWRevealViewControllerDelegate>
-
+@property (strong, nonatomic) UIVisualEffectView *effectView;
 @end
 
 @implementation AppDelegate
@@ -64,11 +64,21 @@
 -(void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
 {
     if(position == FrontViewPositionLeft){
-        [revealController.frontViewController.view setUserInteractionEnabled:YES];
+        //[revealController.frontViewController.view setUserInteractionEnabled:YES];
         [revealController.frontViewController.revealViewController tapGestureRecognizer];
         [revealController.frontViewController.revealViewController panGestureRecognizer];
+       
+        //[self.effectView removeFromSuperview];
     }else{
-        [revealController.frontViewController.view setUserInteractionEnabled:NO];
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        self.effectView.frame = revealController.frontViewController.view.frame;
+        
+        //[revealController.frontViewController.view addSubview:self.effectView];
+        //[revealController.frontViewController.view setUserInteractionEnabled:NO];
+//        for (UIView *subView in revealController.frontViewController.view.subviews) {
+//            [subView setUserInteractionEnabled:NO];
+//        }
     }
 }
 

@@ -66,7 +66,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 //------------------------------------------------------------------
 
 //list of categories to choose in category selection
-@property (strong, nonatomic) NSArray *availableCategories;
+@property (strong, nonatomic) NSMutableArray *availableCategories;
 
 //tableView
 @property (strong, nonatomic) NSMutableArray      *itemsArray;
@@ -142,10 +142,18 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     if ([self isNewCardHaveName] && [self isNewCardHaveAtLeastOneImage]) {
         
-        [self saveAllCardFillInfoToDataBase];
+//        [self saveAllCardFillInfoToDataBase];
+//        
+//        [self performSegueWithIdentifier:@"unwindToMainVC" sender:nil];
+        NSLog(@"array count = %ld", [self.itemsArray count]);
         
-        [self performSegueWithIdentifier:@"unwindToMainVC" sender:nil];
+        NSUInteger location = 4;
+        NSUInteger length = [self.itemsArray count] - 2 - location;
+        NSRange locationsAndPlacesRange = NSMakeRange(location, length);
         
+        NSArray *locationsAndPlacesArray = [self.itemsArray subarrayWithRange:locationsAndPlacesRange];
+        NSLog(@"loctionsAndPlacesArray = %@", locationsAndPlacesArray);
+    
     }else {
         
         [self showAlertForType:ASAlertTypeForCardShouldHaveNameAndPhoto];
@@ -647,6 +655,16 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 #pragma mark - UIPickerViewDelegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     
+//    ASCategory *firstItemCategory = [[ASCategory alloc]init];
+//    firstItemCategory.name = @"Without Category";
+//    
+////    NSMutableArray *titleArray = [NSMutableArray array];
+////    [titleArray addObject:firstItemCategory];
+////    [titleArray addObjectsFromArray:self.availableCategories];
+//    [self.availableCategories insertObject:firstItemCategory atIndex:0];
+//    NSLog(@"array = %@", self.availableCategories);
+    
+    //ASCategory *category = [self.availableCategories objectAtIndex:row];
     ASCategory *category = [self.availableCategories objectAtIndex:row];
     NSString *categoryName = category.name;
     
@@ -659,10 +677,18 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     ASCategory *category = [self.availableCategories objectAtIndex:row];
     NSString *categoryName = category.name;
     
-    ASTextFieldCell *categoryCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
-    categoryCell.textField.text = categoryName;
+     ASTextFieldCell *categoryCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     
-    self.selectedCategory = categoryName;
+    if ([categoryName isEqualToString:@"Without Category"]) {
+       
+        categoryCell.textField.text = @"";
+        
+    }else{
+     
+        categoryCell.textField.text = categoryName;
+        
+        self.selectedCategory = categoryName;
+    }
 }
 
 
@@ -1485,6 +1511,16 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 - (void)defineAllAvailableCategories {
     
     self.availableCategories = [[ASDatabaseManager sharedManager]getAllDataFromDBtableName:@"category"];
+    
+    ASCategory *firstItemCategory = [[ASCategory alloc]init];
+    firstItemCategory.name = @"Without Category";
+    
+    //    NSMutableArray *titleArray = [NSMutableArray array];
+    //    [titleArray addObject:firstItemCategory];
+    //    [titleArray addObjectsFromArray:self.availableCategories];
+    [self.availableCategories insertObject:firstItemCategory atIndex:0];
+    NSLog(@"array = %@", self.availableCategories);
+
 }
 
 -(void)dismissKeyboardTable{
