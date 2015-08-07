@@ -49,6 +49,11 @@
     
     [super viewDidAppear:YES];
     
+    self.locationManager.distanceFilter = kCLDistanceFilterNone;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    
+    [self.locationManager startUpdatingLocation];
+    
     //View Area
 //    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
 //    region.center.latitude = self.locationManager.location.coordinate.latitude;
@@ -57,19 +62,6 @@
 //    region.span.longitudeDelta = 0.005f;
 //    [self.mapView setRegion:region animated:YES];
     
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    [self.locationManager startUpdatingLocation];
-    
-    //View Area
-        MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-        region.center.latitude = self.locationManager.location.coordinate.latitude;
-        region.center.longitude = self.locationManager.location.coordinate.longitude;
-        region.span.longitudeDelta = 0.005f;
-        region.span.longitudeDelta = 0.005f;
-        [self.mapView setRegion:region animated:YES];
-
 }
 
 
@@ -93,6 +85,7 @@
         [self.geoCoder cancelGeocode];
     }
 }
+
 
 #pragma mark - Additionals
 
@@ -127,14 +120,6 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    NSLog(@"lacation manager delegate = %@", [self.locationManager.delegate class]);
-    
-    if (self.locationManager) {
-        NSLog(@"Work");
-    }
-    
-//    self.locationManager.distanceFilter = kCLDistanceFilterNone;
-//    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.locationManager requestAlwaysAuthorization];
@@ -153,13 +138,12 @@
     
     self.geoCoder = [[CLGeocoder alloc]init];
     
-    
-    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    region.center.latitude = self.locationManager.location.coordinate.latitude;
-    region.center.longitude = self.locationManager.location.coordinate.longitude;
-    region.span.longitudeDelta = 0.005f;
-    region.span.longitudeDelta = 0.005f;
-    [self.mapView setRegion:region animated:YES];
+//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+//    region.center.latitude = self.locationManager.location.coordinate.latitude;
+//    region.center.longitude = self.locationManager.location.coordinate.longitude;
+//    region.span.longitudeDelta = 0.005f;
+//    region.span.longitudeDelta = 0.005f;
+//    [self.mapView setRegion:region animated:YES];
 }
 
 
@@ -292,13 +276,6 @@
     
     NSString *latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-    
-//    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-//    region.center.latitude = self.locationManager.location.coordinate.latitude;
-//    region.center.longitude = self.locationManager.location.coordinate.longitude;
-//    region.span.longitudeDelta = 0.005f;
-//    region.span.longitudeDelta = 0.005f;
-//    [self.mapView setRegion:region animated:YES];
     
     NSLog(@"%@ %@", latitude, longitude);
     

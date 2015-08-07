@@ -12,7 +12,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@ %@", self.imageOfCell, self.titleOfCell];
+    return [NSString stringWithFormat:@"%@ %@,/// location = %@, place = %@", self.imageOfCell, self.titleOfCell, self.location, self.place];
 }
 
 @end

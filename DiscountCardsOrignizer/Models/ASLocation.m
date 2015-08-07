@@ -29,4 +29,12 @@
     return newLocation;
 }
 
+
+
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"locationTitle = %@",self.locationTitle];
+}
+
 @end

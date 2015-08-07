@@ -36,4 +36,10 @@
 }
 
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"name %@, address %@, placeID %@ ", self.name, self.address, self.placeID];
+}
+
+
 @end

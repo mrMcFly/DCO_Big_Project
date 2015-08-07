@@ -51,7 +51,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 //for database
 @property (strong, nonatomic) NSDate *selectedDate;
-@property (strong, nonatomic) NSString *selectedCategory;
+@property (assign, nonatomic) NSInteger selectedCategoryID;
+@property (strong, nonatomic) NSString *selectedCategoryTitle;
 
 @property (strong, nonatomic) ASCard *card;
 @property (strong, nonatomic) ASPhoto *photo;
@@ -142,23 +143,14 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     if ([self isNewCardHaveName] && [self isNewCardHaveAtLeastOneImage]) {
         
-//        [self saveAllCardFillInfoToDataBase];
-//        
-//        [self performSegueWithIdentifier:@"unwindToMainVC" sender:nil];
-        NSLog(@"array count = %ld", [self.itemsArray count]);
+        [self saveAllCardFillInfoToDataBase];
         
-        NSUInteger location = 4;
-        NSUInteger length = [self.itemsArray count] - 2 - location;
-        NSRange locationsAndPlacesRange = NSMakeRange(location, length);
-        
-        NSArray *locationsAndPlacesArray = [self.itemsArray subarrayWithRange:locationsAndPlacesRange];
-        NSLog(@"loctionsAndPlacesArray = %@", locationsAndPlacesArray);
-    
+        [self performSegueWithIdentifier:@"unwindToMainVC" sender:nil];
+     
     }else {
         
         [self showAlertForType:ASAlertTypeForCardShouldHaveNameAndPhoto];
     }
-    
 }
 
 
@@ -217,7 +209,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    NSLog(@"textFieldDidBeginEditing %@",textField.text);
     //[self animateTextField:textField up:YES];
     //[self animateTableViewPositionForItem:textField up:YES];
     
@@ -677,7 +668,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     ASCategory *category = [self.availableCategories objectAtIndex:row];
     NSString *categoryName = category.name;
     
-     ASTextFieldCell *categoryCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    ASTextFieldCell *categoryCell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
     
     if ([categoryName isEqualToString:@"Without Category"]) {
        
@@ -686,8 +677,11 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     }else{
      
         categoryCell.textField.text = categoryName;
+        self.categoryForNewCard = category;
         
-        self.selectedCategory = categoryName;
+        //-1 this is row for "Without category"
+        self.selectedCategoryID = row - 1;
+        //self.selectedCategoryTitle =
     }
 }
 
@@ -1216,10 +1210,20 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         ASShowAllNearestPlacesVC *placesVC = segue.sourceViewController;
   
         GooglePlacesObject *placesObj = placesVC.placeObj;
-        
-        self.place.name = placesObj.name;
-        self.place.placeID = placesObj.placeId;
 
+//        self.place.name = placesObj.name;
+//        self.place.placeID = placesObj.placeId;
+//        
+//        NSLog(@"googleplaces obj = %@",placesObj);
+//        NSLog(@"place = %@",self.place);
+
+        //=================
+        ASPlace *placeForArrayItem = [[ASPlace alloc]init];
+        placeForArrayItem.name = placesObj.name;
+        placeForArrayItem.placeID = placesObj.placeId;
+        infoCell.place = placeForArrayItem;
+        //=================
+        
         infoCell.titleOfCell = placesObj.name;
         NSLog(@"info cell title = %@", placesObj.name);
         
@@ -1229,9 +1233,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     } else if ([segue.identifier isEqualToString:@"unwindFromMapSelectLocation"]) {
     
         ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
-        
-        ASCellInfo *cellInfo = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
-        
+
         
     ASMapSelectLocationVC *mapVC = segue.sourceViewController;
         
@@ -1239,14 +1241,19 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         
         if (locationCardAdress && ![locationCardAdress isEqualToString:@"Undefined place"]) {
             
-            self.location.locationTitle = locationCardAdress;
+            //self.location.locationTitle = locationCardAdress;
+            ASLocation *locationForArrayItem = [[ASLocation alloc]init];
+            locationForArrayItem.locationTitle = locationCardAdress;
+            infoCell.location = locationForArrayItem;
+            
             cell.textField.text = locationCardAdress;
             infoCell.titleOfCell = locationCardAdress;
             
         }else{
             
             infoCell.titleOfCell = nil;
-            self.location.locationTitle = nil;
+            //self.location.locationTitle = nil;
+            infoCell.location = nil;
         }
     
     //set values for Location model
@@ -1336,7 +1343,10 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
 
 - (void)addNewFieldsForLocationAndPlaceIfNeeded {
     
-    if (self.choosenCellPath.row > 3 && self.choosenCellPath.row == [self.itemsArray count] - 3 && self.choosenCellPath.row % 2 == 0 && self.location.locationTitle.length > 0) {
+    ASCellInfo *cellInfo = [self.itemsArray objectAtIndex:self.choosenCellPath.row];
+    
+    
+    if (self.choosenCellPath.row > 3 && self.choosenCellPath.row == [self.itemsArray count] - 3 && self.choosenCellPath.row % 2 == 0 && cellInfo.location.locationTitle.length > 0) {
         
         ASCellInfo *cellForPlace = [[ASCellInfo alloc]init];
         ASCellInfo *cellForLocation = [[ASCellInfo alloc]init];
@@ -1364,64 +1374,98 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //photo
     [[ASDatabaseManager sharedManager]
      insertPhotoRecordDataInDBtableWithFrontPhoto:self.photo.frontPhotoPath
-                                     andBackPhoto:self.photo.backPhotoPath];
+     andBackPhoto:self.photo.backPhotoPath];
     
     NSInteger idForPhoto = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
     self.card.photo_id = idForPhoto;
     NSLog(@"%ld",(long)idForPhoto);
     //====================================================================
     
-    
     //card
     //if user not chose category type for card then we set default from which (category viewer) come from
+    
     if(!self.card.category_id){
         self.card.category_id = self.categoryForNewCard.iD;
     }
+    
     
     [[ASDatabaseManager sharedManager]
      insertCardRecordDataInDBtableWithName:self.card.name
      inCategoryWithID:self.card.category_id
      withExpDate:self.card.expDate
      andPhotoID:self.card.photo_id];
-//    NSLog(@"category_id = %lu", (unsigned long)self.card.category_id);
-//    NSLog(@"exp date = %@", self.card.expDate);
-//    NSLog(@"photo_id = %lu", (unsigned long)self.card.photo_id);
+    //    NSLog(@"category_id = %lu", (unsigned long)self.card.category_id);
+    //    NSLog(@"exp date = %@", self.card.expDate);
+    //    NSLog(@"photo_id = %lu", (unsigned long)self.card.photo_id);
     NSInteger idForCard = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
     self.location.cardId = idForCard;
-
+    
     //====================================================================
     
     
-    //place
+    NSUInteger locationOfFirstItem = 4;
+    NSUInteger itemsForNotificationAndCategory = 2;
     
-    [[ASDatabaseManager sharedManager]
-     insertPlaceRecordDataInDBtableWithName:self.place.name
-     withAddress:self.place.address
-     withTypes:self.place.types
-     withPhoneNumber:self.place.phoneNumber
-     withWebsite:self.place.website
-     withOpeningHourse:self.place.openinigHourse
-     withVicinity:self.place.vicinity
-     andPlaceID:self.place.placeID];
+    NSUInteger length = [self.itemsArray count] - itemsForNotificationAndCategory - locationOfFirstItem;
+    NSRange locationsAndPlacesRange = NSMakeRange(locationOfFirstItem, length);
     
-    NSInteger idForPlace = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
-    NSLog(@"idForPlace = %ld", (long)idForPlace);
-    NSLog(@"place name = %@",self.place.name);
-    self.location.placeId = idForPlace;
-    //====================================================================
-
+    NSMutableArray *locationsAndPlacesArray = [NSMutableArray arrayWithArray:[self.itemsArray subarrayWithRange:locationsAndPlacesRange]];
     
-    //location
-    [[ASDatabaseManager sharedManager]
-     insertLocationRecordDataInDBtableWithLocationTitle:self.location.locationTitle
-                                             withCardID:self.location.cardId
-                                            withPlaceID:self.location.placeId
-                                          withLongitude:self.location.longitude
-                                            andLatitude:self.location.latitude];
-    NSLog(@"location place id = %ld", (long)self.location.placeId);
-    //====================================================================
-
-
+    NSLog(@"loctionsAndPlacesArray count = %ld", [locationsAndPlacesArray count]);
+    NSLog(@"loctionsAndPlacesArray = %@", locationsAndPlacesArray);
+    
+    if ([locationsAndPlacesArray count] > 1) {
+        
+        //last object always NULL
+        [locationsAndPlacesArray removeLastObject];
+        
+        NSInteger forEachCount = [locationsAndPlacesArray count] / 2;
+        
+        for (int i = 0; i < forEachCount; i ++) {
+            
+            NSInteger searchIndex = i + i;
+            
+            ASCellInfo *locationInfo = [locationsAndPlacesArray objectAtIndex:searchIndex];
+            ASCellInfo *placeInfo = [locationsAndPlacesArray objectAtIndex:searchIndex + 1];
+            
+            NSNumber *idForPlace = nil;
+            
+            if (placeInfo.place != NULL) {
+                
+                NSLog(@"save Place");
+                NSLog(@"place = %@", placeInfo.place);
+                //place
+                
+                [[ASDatabaseManager sharedManager]
+                 insertPlaceRecordDataInDBtableWithName:placeInfo.place.name
+                 withAddress:placeInfo.place.address
+                 withTypes:placeInfo.place.types
+                 withPhoneNumber:placeInfo.place.phoneNumber
+                 withWebsite:placeInfo.place.website
+                 withOpeningHourse:placeInfo.place.openinigHourse
+                 withVicinity:placeInfo.place.vicinity
+                 andPlaceID:placeInfo.place.placeID];
+                
+                NSInteger rowId = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
+                idForPlace = [NSNumber numberWithInteger:rowId];
+                
+                NSLog(@"idForPlace = %ld", (long)idForPlace);
+                NSLog(@"place name = %@",placeInfo.place.name);
+                //self.location.placeId = idForPlace;
+            }
+            
+            NSLog(@"location = %@", locationInfo.location);
+            
+            [[ASDatabaseManager sharedManager]
+             insertLocationRecordDataInDBtableWithLocationTitle:locationInfo.location.locationTitle
+             withCardID:locationInfo.location.cardId
+             withPlaceID:[idForPlace integerValue]
+             withLongitude:locationInfo.location.longitude
+             andLatitude:locationInfo.location.latitude];
+            NSLog(@"location place id = %ld", (long)idForPlace);
+        }
+        
+    }
 }
 
 
@@ -1554,7 +1598,20 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         cellInfo.titleOfCell = [dateFormatter stringFromDate:chosenDate];
         
     }else if ([cell.textField.placeholder isEqualToString:@"Category"]) {
-        cellInfo.titleOfCell = self.selectedCategory;
+        
+        NSLog(@"name of category: %@",self.categoryForNewCard.name);
+        NSLog(@"category id = %lu", (unsigned long)self.categoryForNewCard.iD);
+        
+        cellInfo.titleOfCell = self.categoryForNewCard.name;
+        self.card.category_id = self.categoryForNewCard.iD;
+        
+//        ASCategory *chosenCategory = [self.availableCategories objectAtIndex:selectedIndex];
+//        
+//        //=============================
+//        self.categoryForNewCard = chosenCategory;
+//        //=============================
+//        
+//        self.card.category_id = chosenCategory.iD;
     }
     
     [cell.textField resignFirstResponder];

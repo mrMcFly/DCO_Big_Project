@@ -42,18 +42,32 @@
     self.googlePlacesConnection = [[ASGooglePlacesConnection alloc] initWithDelegate:self];
     
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(self.latitude, self.longitude);
-    NSLog(@"Coordinates %f %f", coord.latitude, coord.longitude);
+    //NSLog(@"Coordinates %f %f", coord.latitude, coord.longitude);
     
-    NSString *searchLocations = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%@|%@",
+    NSString *searchLocations =
+    [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@|%@",
+                                 kAquarium,
                                  kBar,
+                                 kBeautySalon,
+                                 kBicycleStore,
+                                 kBookStore,
+                                 kCarRental,
+                                 kCarWash,
+                                 kClothingStore,
                                  kRestaurant,
-                                 kCafe,
                                  kBakery,
                                  kFood,
                                  kLodging,
+                                 kGym,
+                                 kCafe,
+                                 kHealth,
                                  kMealDelivery,
                                  kMealTakeaway,
+                                 kMovieTheater,
                                  kNightClub
+                                 kShoeStore,
+                                 kShoppingMall,
+                                 kZoo
                                  ];
 
     [self.googlePlacesConnection getGoogleObjects:coord andTypes:searchLocations];
@@ -76,108 +90,42 @@
 }
 
 
-//#pragma mark - CLLocationManager
-//
-//- (CLLocationManager *)locationManager
-//{
-//    
-//    if (_locationManager != nil)
-//    {
-//        return _locationManager;
-//    }
-//    
-//    _locationManager = [[CLLocationManager alloc] init];
-//    [_locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-//    [_locationManager setDelegate:self];
-//    
-//    return _locationManager;
-//}
-
-//==================================================================
-//- (void)locationManager:(CLLocationManager *)manager
-//    didUpdateToLocation:(CLLocation *)newLocation
-//           fromLocation:(CLLocation *)oldLocation
-//{
-//    
-//    if ([self isResultsLoaded])
-//    {
-//        return;
-//    }
-//    
-//    [self setResultsLoaded:YES];
-//    
-//    self.currentLocation = newLocation;
-//    
-//    //What places to search for
-//    NSString *searchLocations = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%@|%@",
-//                                 kBar,
-//                                 kRestaurant,
-//                                 kCafe,
-//                                 kBakery,
-//                                 kFood,
-//                                 kLodging,
-//                                 kMealDelivery,
-//                                 kMealTakeaway,
-//                                 kNightClub
-//                                 ];
-//
-//    [self.googlePlacesConnection getGoogleObjects:CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude) andTypes:searchLocations];
-//    
-//}
-
-
-//- (void)locationManager:(CLLocationManager *)manager
-//     didUpdateLocations:(NSArray*)locations {
-// 
-//    if ([self isResultsLoaded])
-//    {
-//        return;
-//    }
-//    [self setResultsLoaded:YES];
-//    
-//    self.currentLocation = [locations firstObject];
-//
-//    //What places to search for
-//    NSString *searchLocations = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@|%@|%@|%@",
-//                                 kBar,
-//                                 kRestaurant,
-//                                 kCafe,
-//                                 kBakery,
-//                                 kFood,
-//                                 kLodging,
-//                                 kMealDelivery,
-//                                 kMealTakeaway,
-//                                 kNightClub
-//                                 ];
-//    
-//    [self.googlePlacesConnection getGoogleObjects:CLLocationCoordinate2DMake(self.currentLocation.coordinate.latitude, self.currentLocation.coordinate.longitude) andTypes:searchLocations];
-//}
-
-//=================================================================================
-
-//- (void)locationManager:(CLLocationManager *)manager
-//       didFailWithError:(NSError *)error
-//{
-//    NSLog(@"locationManager FAIL");
-//    NSLog(@"%@", [error description]);
-//}
-
-#pragma mark -
 #pragma mark - Delegate
 
 - (void)googlePlacesConnection:(ASGooglePlacesConnection *)conn didFinishLoadingWithGooglePlacesObjects:(NSMutableArray *)objects
 {
-    NSLog(@"objecrts count = %ld", (unsigned long)[objects count]);
-    NSLog(@"objects : %@", objects);
+//    NSLog(@"objecrts count = %ld", (unsigned long)[objects count]);
+//    NSLog(@"objects : %@", objects);
     
     if ([objects count] == 0) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No matches found near this location"
-                                                        message:@"Try another place name or address"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
+        NSString *alertTitle = @"No matches found near this location";
+        NSString *alertMessage = @"Try another place name or address";
+        NSString *alertCancelButton = @"OK";
+        
+        if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+            
+            [[[UIAlertView alloc]initWithTitle:alertTitle
+                                       message:alertMessage
+                                      delegate:nil
+                             cancelButtonTitle:alertCancelButton
+                             otherButtonTitles:nil]show];
+        }else{
+            
+            self.alertController =
+            [UIAlertController alertControllerWithTitle:alertTitle
+                                                message:alertMessage
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction =
+            [UIAlertAction actionWithTitle:alertCancelButton
+                                     style:UIAlertActionStyleDefault
+                                   handler:^(UIAlertAction *action) {
+                                       [self dismissViewControllerAnimated:YES completion:nil];
+                                   }];
+            [self.alertController addAction:okAction];
+            
+            [self presentViewController:self.alertController animated:YES completion:nil];
+        }
         
         
     } else {
@@ -221,25 +169,6 @@
 
 
 #pragma mark - UITableViewDataSource
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    
-//    return [self.nearestPlacesArray count];
-//}
-//
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    static NSString *cellIdentifier = @"Cell identifier";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    
-//    if (!cell) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
-//    
-//    return cell;
-//}
-
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
 {
@@ -301,8 +230,8 @@
 //    self.chosenPlace = place;
     
     self.placeObj = [self.locations objectAtIndex:indexPath.row];
-    NSLog(@"locations count = %ld",(unsigned long)[self.locations count]);
-    NSLog(@"GooglePlaceObject %@", self.placeObj);
+//    NSLog(@"locations count = %ld",(unsigned long)[self.locations count]);
+//    NSLog(@"GooglePlaceObject %@", self.placeObj);
     
     [self performSegueWithIdentifier:@"unwindFromAllNearestPlaces" sender:nil];
 }

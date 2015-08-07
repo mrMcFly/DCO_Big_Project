@@ -7,195 +7,195 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		207CA92FAEA55AF6A5ADB8CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734D180AD455F1DFEA879C15 /* Foundation.framework */; };
-		295B65DB406BBD78AA5A22E9 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = C7BA9D139F87FE55BC8AAC11 /* TPKeyboardAvoidingCollectionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		42702481880C96A933A170D4 /* UIScrollView+TPKeyboardAvoidingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = AD301125E680174789105DA9 /* UIScrollView+TPKeyboardAvoidingAdditions.h */; };
-		5DE8C4F43B3DCD64E1A4A116 /* TPKeyboardAvoidingScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 642C4841BDB42DA58A704059 /* TPKeyboardAvoidingScrollView.h */; };
-		5DF9F00A890873A1DA727208 /* TPKeyboardAvoidingTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = FAC8FD38B598E030E780D1F1 /* TPKeyboardAvoidingTableView.h */; };
-		8525AF0D4D03A84249C8779E /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C51FB518E8488630E716B3E2 /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		8AC6AE28FE081D5DFADA34E7 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AE4EB10D7841ABF559EEE498 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A53C5EE000132B45FC0653DF /* TPKeyboardAvoidingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F8D7D67A0BE5124644ACD4 /* TPKeyboardAvoidingCollectionView.h */; };
-		C3C32CB0DAB341DBF4CB2983 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E58A570C8FEB8133013329 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */; };
-		CF3D3C627CD0E21F2A80DBF5 /* Pods-DiscountCardsOrignizer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 410A97F524BA6D6A4DDECDEF /* Pods-DiscountCardsOrignizer-dummy.m */; };
-		CF6A953BF688AE56FACE6474 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEB0A38DD96C95F85245C988 /* TPKeyboardAvoidingTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		DC19E533432AC0EE367602B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734D180AD455F1DFEA879C15 /* Foundation.framework */; };
+		136CB2090DCD8865DBB6D53A /* TPKeyboardAvoidingCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = B90CA6C7EF5A37F8BDE47AE9 /* TPKeyboardAvoidingCollectionView.h */; };
+		2A55F75D5D60D47F424CD264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568754698DBC83890CEE8B0C /* Foundation.framework */; };
+		53B73572049C42A3B87C5C21 /* Pods-DiscountCardsOrignizer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AA7BAFAB62BBB258A3E5A3 /* Pods-DiscountCardsOrignizer-dummy.m */; };
+		5A816586691806CF892AF695 /* UIScrollView+TPKeyboardAvoidingAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 53745518291845EF802468FD /* UIScrollView+TPKeyboardAvoidingAdditions.h */; };
+		6A5DA88B87671DD6045A04E9 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 09853A9140F018579104C7F1 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		767E21BE6230025708C2B2EE /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAC2101933ADB3100540583 /* TPKeyboardAvoidingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7B7D420D3EC07C5F2BB8CB30 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5EB7780FB99F65D1D645E58 /* TPKeyboardAvoidingTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7E9672630FFF65ABBC7B3F64 /* TPKeyboardAvoidingTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 85BB361D10040865D0FC0CD0 /* TPKeyboardAvoidingTableView.h */; };
+		8AE0E8546FA869C6FE006389 /* TPKeyboardAvoidingScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DAB3CCD21262DA5313CC8F5 /* TPKeyboardAvoidingScrollView.h */; };
+		A3F8813235A2B3CE11DD407A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 568754698DBC83890CEE8B0C /* Foundation.framework */; };
+		D0C559077611E3368761EE66 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6513089FCB653F68B4301DF1 /* TPKeyboardAvoidingCollectionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E518F648D66BC628A840CC1D /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B895EFE85367006E6C01DA9E /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		49B574B7DAECDDD86B522423 /* PBXContainerItemProxy */ = {
+		1DCF3BB65A554F7E96A4838E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C3CFBD0347DE9A338524866A /* Project object */;
+			containerPortal = 723BAFB814ACBC8F9FB75B9A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1961F7E8AE738E6E752BE100;
+			remoteGlobalIDString = 5AC1EFE2444858E07CCC9BAD;
 			remoteInfo = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02F6EC6F18BA47DB0ED91420 /* Pods-DiscountCardsOrignizer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DiscountCardsOrignizer-acknowledgements.markdown"; sourceTree = "<group>"; };
-		05F8D7D67A0BE5124644ACD4 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingCollectionView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
-		2455E01FBF710854969C7166 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		34042EA7377475AEF8E0C503 /* Pods-DiscountCardsOrignizer-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DiscountCardsOrignizer-environment.h"; sourceTree = "<group>"; };
-		37226C16D531F721835808FB /* Pods-DiscountCardsOrignizer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DiscountCardsOrignizer-resources.sh"; sourceTree = "<group>"; };
-		410A97F524BA6D6A4DDECDEF /* Pods-DiscountCardsOrignizer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DiscountCardsOrignizer-dummy.m"; sourceTree = "<group>"; };
-		450A22C3F5AEB34FA235A035 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch"; sourceTree = "<group>"; };
-		507A92040EBE6E4D939804D3 /* Pods-DiscountCardsOrignizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer.debug.xcconfig"; sourceTree = "<group>"; };
-		53E58A570C8FEB8133013329 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m"; sourceTree = "<group>"; };
-		5EA1622EC2405A9E7FF8F86A /* libPods-DiscountCardsOrignizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiscountCardsOrignizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		642C4841BDB42DA58A704059 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
-		734D180AD455F1DFEA879C15 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		ABCCB7AE2802E1D469662595 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig"; sourceTree = "<group>"; };
-		AD301125E680174789105DA9 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
-		AE4EB10D7841ABF559EEE498 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
-		C51FB518E8488630E716B3E2 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
-		C7BA9D139F87FE55BC8AAC11 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingCollectionView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
-		D589DF75D6A53C76EC41F63E /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E23F47BC9A74218215EBE9F7 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig"; sourceTree = "<group>"; };
-		EA1C64C17F992AF4EBAA860E /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
-		EE4234036CE254B1786B3659 /* Pods-DiscountCardsOrignizer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DiscountCardsOrignizer-acknowledgements.plist"; sourceTree = "<group>"; };
-		EEB0A38DD96C95F85245C988 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
-		F3C9FFB2F1D1C7B2B0FDF0D9 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
-		FAA143BBDEFA81F176301E1F /* Pods-DiscountCardsOrignizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer.release.xcconfig"; sourceTree = "<group>"; };
-		FAC8FD38B598E030E780D1F1 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingTableView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		07F88DFFB819DB4AB3A29995 /* Pods-DiscountCardsOrignizer-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-DiscountCardsOrignizer-resources.sh"; sourceTree = "<group>"; };
+		09853A9140F018579104C7F1 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+TPKeyboardAvoidingAdditions.m"; path = "TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
+		0E73F620C2BBA9D656E80C94 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig"; sourceTree = "<group>"; };
+		13E99D3B5EB261A9E41D5157 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		30AA7BAFAB62BBB258A3E5A3 /* Pods-DiscountCardsOrignizer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DiscountCardsOrignizer-dummy.m"; sourceTree = "<group>"; };
+		31CCBD5248B6D248867B69BA /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig"; sourceTree = "<group>"; };
+		406AF4F7A014986314475DEB /* Pods-DiscountCardsOrignizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer.debug.xcconfig"; sourceTree = "<group>"; };
+		443F2AA069DB672854A48396 /* Pods-DiscountCardsOrignizer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-DiscountCardsOrignizer-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4CD49EE9338DAC99964D7F16 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		507649EA59659077C9E27307 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch"; sourceTree = "<group>"; };
+		53745518291845EF802468FD /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+TPKeyboardAvoidingAdditions.h"; path = "TPKeyboardAvoiding/UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		568754698DBC83890CEE8B0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6513089FCB653F68B4301DF1 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingCollectionView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		76CB3B87134D672D8E2E86C8 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		85BB361D10040865D0FC0CD0 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingTableView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		9DAB3CCD21262DA5313CC8F5 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingScrollView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		9FAC2101933ADB3100540583 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingScrollView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		B5EB7780FB99F65D1D645E58 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TPKeyboardAvoidingTableView.m; path = TPKeyboardAvoiding/TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		B895EFE85367006E6C01DA9E /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m"; sourceTree = "<group>"; };
+		B90CA6C7EF5A37F8BDE47AE9 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TPKeyboardAvoidingCollectionView.h; path = TPKeyboardAvoiding/TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		C72B6586410793E488ED4A80 /* libPods-DiscountCardsOrignizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiscountCardsOrignizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E93B8A7791A0D4A0C90207 /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2CDCA737FB4B2AC2DDD5B58 /* Pods-DiscountCardsOrignizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-DiscountCardsOrignizer.release.xcconfig"; sourceTree = "<group>"; };
+		EB3BD673969F3E9B2283BC42 /* Pods-DiscountCardsOrignizer-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-DiscountCardsOrignizer-environment.h"; sourceTree = "<group>"; };
+		FA340321CEA52963F14700E8 /* Pods-DiscountCardsOrignizer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-DiscountCardsOrignizer-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C1165908A34A798DA1357B0E /* Frameworks */ = {
+		11BE10B99599A75B11FC2662 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				207CA92FAEA55AF6A5ADB8CC /* Foundation.framework in Frameworks */,
+				A3F8813235A2B3CE11DD407A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EAEEF29736F089F289965025 /* Frameworks */ = {
+		CBDC9710ED61C6E8BB4EA260 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC19E533432AC0EE367602B7 /* Foundation.framework in Frameworks */,
+				2A55F75D5D60D47F424CD264 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C1F267EEEB28C6040E78366 /* Support Files */ = {
+		24D2931AC7D47F97D9087E2E /* TPKeyboardAvoiding */ = {
 			isa = PBXGroup;
 			children = (
-				E23F47BC9A74218215EBE9F7 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig */,
-				ABCCB7AE2802E1D469662595 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */,
-				53E58A570C8FEB8133013329 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */,
-				450A22C3F5AEB34FA235A035 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
-			sourceTree = "<group>";
-		};
-		13BBD518B0F601B92B0A73F3 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				734D180AD455F1DFEA879C15 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		1C20773330EE43153A0C44B5 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				D1918D001D57F5AD53850576 /* Pods-DiscountCardsOrignizer */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		1D8A6AD22950B07BA56A95E6 /* TPKeyboardAvoiding */ = {
-			isa = PBXGroup;
-			children = (
-				05F8D7D67A0BE5124644ACD4 /* TPKeyboardAvoidingCollectionView.h */,
-				C7BA9D139F87FE55BC8AAC11 /* TPKeyboardAvoidingCollectionView.m */,
-				642C4841BDB42DA58A704059 /* TPKeyboardAvoidingScrollView.h */,
-				C51FB518E8488630E716B3E2 /* TPKeyboardAvoidingScrollView.m */,
-				FAC8FD38B598E030E780D1F1 /* TPKeyboardAvoidingTableView.h */,
-				EEB0A38DD96C95F85245C988 /* TPKeyboardAvoidingTableView.m */,
-				AD301125E680174789105DA9 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
-				AE4EB10D7841ABF559EEE498 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
-				0C1F267EEEB28C6040E78366 /* Support Files */,
+				B90CA6C7EF5A37F8BDE47AE9 /* TPKeyboardAvoidingCollectionView.h */,
+				6513089FCB653F68B4301DF1 /* TPKeyboardAvoidingCollectionView.m */,
+				9DAB3CCD21262DA5313CC8F5 /* TPKeyboardAvoidingScrollView.h */,
+				9FAC2101933ADB3100540583 /* TPKeyboardAvoidingScrollView.m */,
+				85BB361D10040865D0FC0CD0 /* TPKeyboardAvoidingTableView.h */,
+				B5EB7780FB99F65D1D645E58 /* TPKeyboardAvoidingTableView.m */,
+				53745518291845EF802468FD /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				09853A9140F018579104C7F1 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+				E185CAC37D4A5E44827DE093 /* Support Files */,
 			);
 			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
-		32782EA123105152DD8AE8F7 /* Pods */ = {
+		4493C1F698BB5667CAC632B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E85426559509AD7F28E9E5CA /* GoogleMaps */,
-				1D8A6AD22950B07BA56A95E6 /* TPKeyboardAvoiding */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		3BB400D147851F02704950EA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F3C9FFB2F1D1C7B2B0FDF0D9 /* GoogleMaps.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		4894E591F157C3854CF5977C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5EA1622EC2405A9E7FF8F86A /* libPods-DiscountCardsOrignizer.a */,
-				D589DF75D6A53C76EC41F63E /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		7CC460FE0492057F47FDE96D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EA1C64C17F992AF4EBAA860E /* GoogleMaps.framework */,
+				639C7E5E4422E6683B6D4676 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8E907A96DBA5CA02FB6090C3 = {
+		46AAD711DE17EADF29769635 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				2455E01FBF710854969C7166 /* Podfile */,
-				BF50354EC3DC47EF72975B62 /* Frameworks */,
-				32782EA123105152DD8AE8F7 /* Pods */,
-				4894E591F157C3854CF5977C /* Products */,
-				1C20773330EE43153A0C44B5 /* Targets Support Files */,
+				50E88193BD4C403AB5ADE9A8 /* Pods-DiscountCardsOrignizer */,
 			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		BF50354EC3DC47EF72975B62 /* Frameworks */ = {
+		50E88193BD4C403AB5ADE9A8 /* Pods-DiscountCardsOrignizer */ = {
 			isa = PBXGroup;
 			children = (
-				13BBD518B0F601B92B0A73F3 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D1918D001D57F5AD53850576 /* Pods-DiscountCardsOrignizer */ = {
-			isa = PBXGroup;
-			children = (
-				02F6EC6F18BA47DB0ED91420 /* Pods-DiscountCardsOrignizer-acknowledgements.markdown */,
-				EE4234036CE254B1786B3659 /* Pods-DiscountCardsOrignizer-acknowledgements.plist */,
-				410A97F524BA6D6A4DDECDEF /* Pods-DiscountCardsOrignizer-dummy.m */,
-				34042EA7377475AEF8E0C503 /* Pods-DiscountCardsOrignizer-environment.h */,
-				37226C16D531F721835808FB /* Pods-DiscountCardsOrignizer-resources.sh */,
-				507A92040EBE6E4D939804D3 /* Pods-DiscountCardsOrignizer.debug.xcconfig */,
-				FAA143BBDEFA81F176301E1F /* Pods-DiscountCardsOrignizer.release.xcconfig */,
+				443F2AA069DB672854A48396 /* Pods-DiscountCardsOrignizer-acknowledgements.markdown */,
+				FA340321CEA52963F14700E8 /* Pods-DiscountCardsOrignizer-acknowledgements.plist */,
+				30AA7BAFAB62BBB258A3E5A3 /* Pods-DiscountCardsOrignizer-dummy.m */,
+				EB3BD673969F3E9B2283BC42 /* Pods-DiscountCardsOrignizer-environment.h */,
+				07F88DFFB819DB4AB3A29995 /* Pods-DiscountCardsOrignizer-resources.sh */,
+				406AF4F7A014986314475DEB /* Pods-DiscountCardsOrignizer.debug.xcconfig */,
+				E2CDCA737FB4B2AC2DDD5B58 /* Pods-DiscountCardsOrignizer.release.xcconfig */,
 			);
 			name = "Pods-DiscountCardsOrignizer";
 			path = "Target Support Files/Pods-DiscountCardsOrignizer";
 			sourceTree = "<group>";
 		};
-		E85426559509AD7F28E9E5CA /* GoogleMaps */ = {
+		639C7E5E4422E6683B6D4676 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7CC460FE0492057F47FDE96D /* Frameworks */,
-				3BB400D147851F02704950EA /* Resources */,
+				568754698DBC83890CEE8B0C /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		8A74B6EF828EBBE7B8264FD8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE325DA01093D743BE9428EE /* GoogleMaps */,
+				24D2931AC7D47F97D9087E2E /* TPKeyboardAvoiding */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9ADDFD59AC539F29D6776D79 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				76CB3B87134D672D8E2E86C8 /* GoogleMaps.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AE81C0F45DEAFA88A2161FDC = {
+			isa = PBXGroup;
+			children = (
+				4CD49EE9338DAC99964D7F16 /* Podfile */,
+				4493C1F698BB5667CAC632B1 /* Frameworks */,
+				8A74B6EF828EBBE7B8264FD8 /* Pods */,
+				B9C2E82619148B67CA4AC58B /* Products */,
+				46AAD711DE17EADF29769635 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		B9C2E82619148B67CA4AC58B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C72B6586410793E488ED4A80 /* libPods-DiscountCardsOrignizer.a */,
+				D8E93B8A7791A0D4A0C90207 /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BCAF8641240BB07606460E97 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13E99D3B5EB261A9E41D5157 /* GoogleMaps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E185CAC37D4A5E44827DE093 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				31CCBD5248B6D248867B69BA /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding.xcconfig */,
+				0E73F620C2BBA9D656E80C94 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */,
+				B895EFE85367006E6C01DA9E /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m */,
+				507649EA59659077C9E27307 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
+			sourceTree = "<group>";
+		};
+		FE325DA01093D743BE9428EE /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				BCAF8641240BB07606460E97 /* Frameworks */,
+				9ADDFD59AC539F29D6776D79 /* Resources */,
 			);
 			path = GoogleMaps;
 			sourceTree = "<group>";
@@ -203,27 +203,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		7BBA7B8254D1B79FFE5761F5 /* Headers */ = {
+		E3A55CDCE61B5842A5DDF9B3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A53C5EE000132B45FC0653DF /* TPKeyboardAvoidingCollectionView.h in Headers */,
-				5DE8C4F43B3DCD64E1A4A116 /* TPKeyboardAvoidingScrollView.h in Headers */,
-				5DF9F00A890873A1DA727208 /* TPKeyboardAvoidingTableView.h in Headers */,
-				42702481880C96A933A170D4 /* UIScrollView+TPKeyboardAvoidingAdditions.h in Headers */,
+				136CB2090DCD8865DBB6D53A /* TPKeyboardAvoidingCollectionView.h in Headers */,
+				8AE0E8546FA869C6FE006389 /* TPKeyboardAvoidingScrollView.h in Headers */,
+				7E9672630FFF65ABBC7B3F64 /* TPKeyboardAvoidingTableView.h in Headers */,
+				5A816586691806CF892AF695 /* UIScrollView+TPKeyboardAvoidingAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1961F7E8AE738E6E752BE100 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */ = {
+		5AC1EFE2444858E07CCC9BAD /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BCE14E51C72378F05F2E740C /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding" */;
+			buildConfigurationList = A75FD3EC39E05674A7822819 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding" */;
 			buildPhases = (
-				B1DB5913706C37A3AFD06B62 /* Sources */,
-				EAEEF29736F089F289965025 /* Frameworks */,
-				7BBA7B8254D1B79FFE5761F5 /* Headers */,
+				22E916BC4704252CEF2EA6CD /* Sources */,
+				CBDC9710ED61C6E8BB4EA260 /* Frameworks */,
+				E3A55CDCE61B5842A5DDF9B3 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -231,86 +231,168 @@
 			);
 			name = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
 			productName = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
-			productReference = D589DF75D6A53C76EC41F63E /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */;
+			productReference = D8E93B8A7791A0D4A0C90207 /* libPods-DiscountCardsOrignizer-TPKeyboardAvoiding.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		8AC8656CE9B6D1FA71711913 /* Pods-DiscountCardsOrignizer */ = {
+		8EC63B420A7A7EDDFA68E6A1 /* Pods-DiscountCardsOrignizer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 202B0081B687897AC1521184 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer" */;
+			buildConfigurationList = B32EFF6EDE5B1D172E52C7B7 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer" */;
 			buildPhases = (
-				33B4FC030D524C3075ED41E8 /* Sources */,
-				C1165908A34A798DA1357B0E /* Frameworks */,
+				430EF4697CED7600A0CAC199 /* Sources */,
+				11BE10B99599A75B11FC2662 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				0DA581BE13B73C2513603ABB /* PBXTargetDependency */,
+				ED56C1999875A4A4A0B3D36C /* PBXTargetDependency */,
 			);
 			name = "Pods-DiscountCardsOrignizer";
 			productName = "Pods-DiscountCardsOrignizer";
-			productReference = 5EA1622EC2405A9E7FF8F86A /* libPods-DiscountCardsOrignizer.a */;
+			productReference = C72B6586410793E488ED4A80 /* libPods-DiscountCardsOrignizer.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C3CFBD0347DE9A338524866A /* Project object */ = {
+		723BAFB814ACBC8F9FB75B9A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
 			};
-			buildConfigurationList = C5900187AA8564BF1C502636 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = E0785A100587D40D0E6C8997 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 8E907A96DBA5CA02FB6090C3;
-			productRefGroup = 4894E591F157C3854CF5977C /* Products */;
+			mainGroup = AE81C0F45DEAFA88A2161FDC;
+			productRefGroup = B9C2E82619148B67CA4AC58B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8AC8656CE9B6D1FA71711913 /* Pods-DiscountCardsOrignizer */,
-				1961F7E8AE738E6E752BE100 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */,
+				8EC63B420A7A7EDDFA68E6A1 /* Pods-DiscountCardsOrignizer */,
+				5AC1EFE2444858E07CCC9BAD /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		33B4FC030D524C3075ED41E8 /* Sources */ = {
+		22E916BC4704252CEF2EA6CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF3D3C627CD0E21F2A80DBF5 /* Pods-DiscountCardsOrignizer-dummy.m in Sources */,
+				E518F648D66BC628A840CC1D /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m in Sources */,
+				D0C559077611E3368761EE66 /* TPKeyboardAvoidingCollectionView.m in Sources */,
+				767E21BE6230025708C2B2EE /* TPKeyboardAvoidingScrollView.m in Sources */,
+				7B7D420D3EC07C5F2BB8CB30 /* TPKeyboardAvoidingTableView.m in Sources */,
+				6A5DA88B87671DD6045A04E9 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B1DB5913706C37A3AFD06B62 /* Sources */ = {
+		430EF4697CED7600A0CAC199 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3C32CB0DAB341DBF4CB2983 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-dummy.m in Sources */,
-				295B65DB406BBD78AA5A22E9 /* TPKeyboardAvoidingCollectionView.m in Sources */,
-				8525AF0D4D03A84249C8779E /* TPKeyboardAvoidingScrollView.m in Sources */,
-				CF6A953BF688AE56FACE6474 /* TPKeyboardAvoidingTableView.m in Sources */,
-				8AC6AE28FE081D5DFADA34E7 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				53B73572049C42A3B87C5C21 /* Pods-DiscountCardsOrignizer-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0DA581BE13B73C2513603ABB /* PBXTargetDependency */ = {
+		ED56C1999875A4A4A0B3D36C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding";
-			target = 1961F7E8AE738E6E752BE100 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */;
-			targetProxy = 49B574B7DAECDDD86B522423 /* PBXContainerItemProxy */;
+			target = 5AC1EFE2444858E07CCC9BAD /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding */;
+			targetProxy = 1DCF3BB65A554F7E96A4838E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		76FCD358D15A88F3A43CC44C /* Debug */ = {
+		0B02521F3F95BD779286E5BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 406AF4F7A014986314475DEB /* Pods-DiscountCardsOrignizer.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3F01CEECE228181223A2552E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2CDCA737FB4B2AC2DDD5B58 /* Pods-DiscountCardsOrignizer.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		5134B867FB285CC18B8B5A8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E73F620C2BBA9D656E80C94 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		7911F2D6EAE853C874FF5F79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CDA8DC11C12E03A61EB71003 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -349,43 +431,9 @@
 			};
 			name = Debug;
 		};
-		990B81699ACC5F8A13628E7F /* Release */ = {
+		EA4FB661B87D08D50FD2E6AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A7E2AF19E50D99B3B5B4988A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABCCB7AE2802E1D469662595 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */;
+			baseConfigurationReference = 0E73F620C2BBA9D656E80C94 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch";
@@ -398,86 +446,38 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
-		};
-		C5878AAD2720DFF3AB2E6C76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABCCB7AE2802E1D469662595 /* Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding/Pods-DiscountCardsOrignizer-TPKeyboardAvoiding-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		C78C58C44F449064B0DE2B6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 507A92040EBE6E4D939804D3 /* Pods-DiscountCardsOrignizer.debug.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		CAC3ECB57549B12CC6E3A9FC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAA143BBDEFA81F176301E1F /* Pods-DiscountCardsOrignizer.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		202B0081B687897AC1521184 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer" */ = {
+		A75FD3EC39E05674A7822819 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C78C58C44F449064B0DE2B6B /* Debug */,
-				CAC3ECB57549B12CC6E3A9FC /* Release */,
+				EA4FB661B87D08D50FD2E6AE /* Debug */,
+				5134B867FB285CC18B8B5A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BCE14E51C72378F05F2E740C /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer-TPKeyboardAvoiding" */ = {
+		B32EFF6EDE5B1D172E52C7B7 /* Build configuration list for PBXNativeTarget "Pods-DiscountCardsOrignizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A7E2AF19E50D99B3B5B4988A /* Debug */,
-				C5878AAD2720DFF3AB2E6C76 /* Release */,
+				0B02521F3F95BD779286E5BC /* Debug */,
+				3F01CEECE228181223A2552E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5900187AA8564BF1C502636 /* Build configuration list for PBXProject "Pods" */ = {
+		E0785A100587D40D0E6C8997 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				76FCD358D15A88F3A43CC44C /* Debug */,
-				990B81699ACC5F8A13628E7F /* Release */,
+				CDA8DC11C12E03A61EB71003 /* Debug */,
+				7911F2D6EAE853C874FF5F79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C3CFBD0347DE9A338524866A /* Project object */;
+	rootObject = 723BAFB814ACBC8F9FB75B9A /* Project object */;
 }
