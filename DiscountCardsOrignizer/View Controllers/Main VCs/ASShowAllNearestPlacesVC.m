@@ -80,7 +80,9 @@
 //    ASGooglePlacesAPI *placesAPI = [ASGooglePlacesAPI sharedInstance];
 //    [placesAPI getFirstInfoFromCoordinates:locationCoordinate];
     
-    [self hideStatusBar];
+    //[self hideStatusBar];
+    
+    self.navigationItem.title = @"Nearest Places";
 }
 
 

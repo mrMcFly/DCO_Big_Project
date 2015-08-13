@@ -321,9 +321,9 @@
     }else {
         
         if (indexPath.row == 0) {
-            cell.backgroundColor = [UIColor yellowColor];
+            cell.backgroundColor = [UIColor colorWithRed:0.647 green:0.806 blue:0.911 alpha:1.000];
         }else{
-            cell.backgroundColor = [UIColor grayColor];
+            cell.backgroundColor = [UIColor colorWithRed:0.880 green:0.757 blue:0.144 alpha:1.000];
         }
     }
     

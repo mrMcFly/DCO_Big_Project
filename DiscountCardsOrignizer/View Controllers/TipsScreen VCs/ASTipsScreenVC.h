@@ -16,6 +16,7 @@
 //for define width of this elements
 @property (weak, nonatomic) IBOutlet UIView *messageButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet UIButton *confirmAppearanceButton;
 
 @end
 

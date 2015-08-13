@@ -8,6 +8,13 @@
 
 #import "ASAboutAppVC.h"
 
+@interface ASAboutAppVC ()
+
+@property (weak, nonatomic) IBOutlet UITextView *aboutTextView;
+
+@end
+
+
 @implementation ASAboutAppVC
 
 -(void)viewDidLoad {
@@ -19,7 +26,9 @@
     //[self setTextAndColorForNavigationBarAndStatusBar];
     
     self.navigationItem.title = @"About";
-
+    
+        
+    [self.aboutTextView scrollRangeToVisible:NSMakeRange(0, 1)];
 }
 
 

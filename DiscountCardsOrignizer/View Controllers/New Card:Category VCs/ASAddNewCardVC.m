@@ -296,7 +296,10 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         placesVC.latitude = self.location.latitude;
         
         
-        [self presentViewController:placesVC animated:YES completion:^{
+        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:placesVC];
+        
+        
+        [self presentViewController:navigationController animated:YES completion:^{
             // NSLog(@"Completion");
         }];
         
@@ -1232,9 +1235,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
                 
     } else if ([segue.identifier isEqualToString:@"unwindFromMapSelectLocation"]) {
     
-        ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
+    ASTextFieldCell *cell = (ASTextFieldCell*)[self.tableView cellForRowAtIndexPath:self.choosenCellPath];
 
-        
     ASMapSelectLocationVC *mapVC = segue.sourceViewController;
         
     NSString *locationCardAdress = mapVC.selectedLocationForCardField.text;
@@ -1245,6 +1247,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             ASLocation *locationForArrayItem = [[ASLocation alloc]init];
             locationForArrayItem.locationTitle = locationCardAdress;
             infoCell.location = locationForArrayItem;
+            infoCell.location.latitude = mapVC.latitude;
+            infoCell.location.longitude = mapVC.longitude;
             
             cell.textField.text = locationCardAdress;
             infoCell.titleOfCell = locationCardAdress;
@@ -1260,8 +1264,6 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     self.location.longitude = mapVC.longitude;
     self.location.latitude = mapVC.latitude;
     
-        NSLog(@"cellpath = %ld",self.choosenCellPath.row);
-        NSLog(@"cellpath = %ld",mapVC.indexPath.row);
 
     //self.choosenCellPath = mapVC.indexPath;
         
@@ -1388,6 +1390,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
         self.card.category_id = self.categoryForNewCard.iD;
     }
     
+    //NSNumber *idForCard = nil;
+
     
     [[ASDatabaseManager sharedManager]
      insertCardRecordDataInDBtableWithName:self.card.name
@@ -1398,7 +1402,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     //    NSLog(@"exp date = %@", self.card.expDate);
     //    NSLog(@"photo_id = %lu", (unsigned long)self.card.photo_id);
     NSInteger idForCard = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
-    self.location.cardId = idForCard;
+    //self.location.cardId = idForCard;
     
     //====================================================================
     
@@ -1411,7 +1415,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
     
     NSMutableArray *locationsAndPlacesArray = [NSMutableArray arrayWithArray:[self.itemsArray subarrayWithRange:locationsAndPlacesRange]];
     
-    NSLog(@"loctionsAndPlacesArray count = %ld", [locationsAndPlacesArray count]);
+    NSLog(@"loctionsAndPlacesArray count = %ld", (unsigned long)[locationsAndPlacesArray count]);
     NSLog(@"loctionsAndPlacesArray = %@", locationsAndPlacesArray);
     
     if ([locationsAndPlacesArray count] > 1) {
@@ -1428,7 +1432,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             ASCellInfo *locationInfo = [locationsAndPlacesArray objectAtIndex:searchIndex];
             ASCellInfo *placeInfo = [locationsAndPlacesArray objectAtIndex:searchIndex + 1];
             
-            NSNumber *idForPlace = nil;
+            NSInteger idForPlace = 0;
             
             if (placeInfo.place != NULL) {
                 
@@ -1446,8 +1450,7 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
                  withVicinity:placeInfo.place.vicinity
                  andPlaceID:placeInfo.place.placeID];
                 
-                NSInteger rowId = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
-                idForPlace = [NSNumber numberWithInteger:rowId];
+                idForPlace = [[ASDatabaseManager sharedManager]returnLastInsertedRowID];
                 
                 NSLog(@"idForPlace = %ld", (long)idForPlace);
                 NSLog(@"place name = %@",placeInfo.place.name);
@@ -1458,8 +1461,8 @@ UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDeleg
             
             [[ASDatabaseManager sharedManager]
              insertLocationRecordDataInDBtableWithLocationTitle:locationInfo.location.locationTitle
-             withCardID:locationInfo.location.cardId
-             withPlaceID:[idForPlace integerValue]
+             withCardID:idForCard
+             withPlaceID:idForPlace
              withLongitude:locationInfo.location.longitude
              andLatitude:locationInfo.location.latitude];
             NSLog(@"location place id = %ld", (long)idForPlace);

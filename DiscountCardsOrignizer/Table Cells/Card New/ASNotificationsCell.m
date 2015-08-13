@@ -13,6 +13,10 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.confirmNotificationsButton.layer.cornerRadius = 5.f;
+    self.confirmNotificationsButton.layer.borderColor = [UIColor purpleColor].CGColor;
+    self.confirmNotificationsButton.layer.borderWidth = 1.f;
 }
 
 

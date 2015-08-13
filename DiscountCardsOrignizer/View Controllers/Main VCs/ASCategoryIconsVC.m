@@ -71,7 +71,8 @@
     ASCategoryIconCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifer forIndexPath:indexPath];
 
     cell.categoryIcon.image = [UIImage imageNamed:[[self.iconsArray objectAtIndex:indexPath.section]objectAtIndex:indexPath.row]];
-   
+    cell.layer.cornerRadius = 5;
+    
     return cell;
 }
 

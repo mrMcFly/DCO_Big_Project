@@ -68,13 +68,14 @@
         [revealController.frontViewController.revealViewController tapGestureRecognizer];
         [revealController.frontViewController.revealViewController panGestureRecognizer];
        
-        //[self.effectView removeFromSuperview];
+        [self.effectView removeFromSuperview];
     }else{
+        
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
         self.effectView.frame = revealController.frontViewController.view.frame;
         
-        //[revealController.frontViewController.view addSubview:self.effectView];
+        [revealController.frontViewController.view addSubview:self.effectView];
         //[revealController.frontViewController.view setUserInteractionEnabled:NO];
 //        for (UIView *subView in revealController.frontViewController.view.subviews) {
 //            [subView setUserInteractionEnabled:NO];

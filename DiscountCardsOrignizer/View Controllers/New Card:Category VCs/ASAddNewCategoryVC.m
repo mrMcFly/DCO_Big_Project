@@ -29,6 +29,12 @@
     [super viewDidLoad];
     
     self.category = [[ASCategory alloc]init];
+    
+    self.iconButton.layer.cornerRadius = 10.f;
+    self.iconButton.layer.borderWidth = 2.f;
+    self.iconButton.layer.borderColor = [UIColor colorWithRed:0.468 green:0.525 blue:0.684 alpha:1.000].CGColor;
+    self.iconButton.backgroundColor = [UIColor colorWithRed:1.000 green:0.662 blue:0.071 alpha:1.000];
+    self.view.backgroundColor = [UIColor colorWithRed:1.000 green:0.832 blue:0.487 alpha:1.000];
 }
 
 

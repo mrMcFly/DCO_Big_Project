@@ -78,6 +78,7 @@
     [self.navigationController.navigationBar addSubview:statusBarView];
 }
 
+
 - (void) mapViewSetup {
 
     self.mapView.delegate = self;

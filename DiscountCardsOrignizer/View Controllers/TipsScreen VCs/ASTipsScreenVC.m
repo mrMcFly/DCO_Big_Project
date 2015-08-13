@@ -36,6 +36,8 @@
     UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
     view.backgroundColor=[UIColor blackColor];
     [self.view addSubview:view];
+    
+    self.confirmAppearanceButton.layer.cornerRadius = 10;
 
 }
 

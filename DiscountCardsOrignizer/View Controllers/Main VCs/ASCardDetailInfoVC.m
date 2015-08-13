@@ -44,6 +44,7 @@
     self.itemsArray = [NSMutableArray array];
     
     NSLog(@"Card detail info %@",self.chosenCard);
+    
     [self createDataArrayForTable];
 }
 
@@ -66,10 +67,17 @@
     
     static float height = 0.f;
     
-    static NSString *imageIdentifier            = @"ASCardDetailsImageCell";
-    static NSString *expDateIdentifier          = @"ASCardDetailsExpDateCell";
-    static NSString *locationIdentifier         = @"ASCardDetailsLocationCell";
-    static NSString *locationAndPlaceIdentifier = @"ASCardDetailsLocationAndPlaceCell";
+    static NSString *imageIdentifier
+    = @"ASCardDetailsImageCell";
+    
+    static NSString *expDateIdentifier
+    = @"ASCardDetailsExpDateCell";
+    
+    static NSString *locationIdentifier
+    = @"ASCardDetailsLocationCell";
+    
+    static NSString *locationAndPlaceIdentifier
+    = @"ASCardDetailsLocationAndPlaceCell";
 //    static NSString *editIdentifier             = @"ASCardDetailsEditCell";
     
     UITableViewCell *cell = nil;
@@ -87,6 +95,13 @@
         if (![photo.frontPhotoPath isEqualToString:@"(null)"]) {
             
             //UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+            
+            NSLog(@"Path = %@", photo.frontPhotoPath);
+            UIImage *img = [UIImage imageWithContentsOfFile:photo.frontPhotoPath];
+            NSLog(@"Img = %@",img);
+            if (img) {
+                NSLog(@"Image %@",img);
+            }
             
             ((ASCardDetailsImageCell*)cell).cardImage.image = [UIImage imageWithContentsOfFile:photo.frontPhotoPath];   //path to image;
         }else if (![photo.backPhotoPath isEqualToString:@"(null)"]) {
@@ -195,15 +210,21 @@
     if (![photo.frontPhotoPath isEqualToString:@"(null)"]) {
         //numberOfRows ++;
         [self.itemsArray addObject:photo];
+        NSLog(@"front photo");
     }
     if (![photo.backPhotoPath isEqualToString:@"(null)"]) {
         //numberOfRows ++;
         [self.itemsArray addObject:photo];
+        NSLog(@"back photo");
     }
     
-    if (card.expDate.length > 0) {
+    
+    if (![card.expDate isEqualToString:@"(null)"]) {
         [self.itemsArray addObject:card.expDate];
+        NSLog(@"Exp date");
     }
+    
+    
     
     
     NSArray *locationsArray = [[ASDatabaseManager sharedManager]getInfoFromLocationTableWithIndexID:card.iD];
@@ -217,13 +238,14 @@
             
             if(location.placeId > 0){
                 NSArray *placeArray = [[ASDatabaseManager sharedManager]getInfoFromPlaceTableWithIndexID:location.placeId];
+                //flways first object becouse location has only one place.
                 ASPlace *place = [placeArray firstObject];
                 NSLog(@"place = %@", place);
                 NSArray *arr = @[location,place];
                 [self.itemsArray addObject:arr];
-            }else{
-                [self.itemsArray addObject:location];
             }
+                [self.itemsArray addObject:location];
+            
         }
     }
     
